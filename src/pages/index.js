@@ -1,7 +1,9 @@
-import Home from "./HomePage";
-import About from "./AboutPage";
-import Plants from "./PlantsPage";
-import Error from "./ErrorPage";
-import PrivateRoute from "./PrivateRoute";
-
-export { Home, About, Plants, Error, PrivateRoute };
+export { default as Home } from "./HomeLayout";
+export { default as About } from "./About";
+export { default as Plants } from "./Plants";
+export { default as Error } from "./Error";
+export { default as PrivateRoute } from "./PrivateRoute";
+export { default as Cart } from "./Cart";
+export { default as SinglePlant } from "./SinglePlant";
+export { default as HomeLayout } from "./HomeLayout";
+export { default as Landing } from "./Landing";

@@ -1,17 +1,53 @@
+import React from "react";
 import "./App.css";
-import { Home, About, Plants, Error, PrivateRoute } from "./pages";
+import {
+  About,
+  Plants,
+  Error,
+  PrivateRoute,
+  Cart,
+  SinglePlant,
+  HomeLayout,
+  Landing,
+} from "./pages";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import Checkout from "./pages/Checkout";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <HomeLayout />,
+    children: [
+      {
+        index: true,
+        element: <Landing />,
+      },
+      {
+        path: "about",
+        element: <About />,
+      },
+      {
+        path: "plants",
+        element: <Plants />,
+      },
+      {
+        path: "plant",
+        element: <SinglePlant />,
+      },
+      {
+        path: "cart",
+        element: <Cart />,
+      },
+      {
+        path: "checkout",
+        element: <Checkout />,
+      },
+    ],
+  },
+]);
 
 function App() {
-  return (
-    <div>
-      <h4>comfy sloth starter</h4>
-      <Home />
-      <About />
-      <Plants />
-      <Error />
-      <PrivateRoute />
-    </div>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;

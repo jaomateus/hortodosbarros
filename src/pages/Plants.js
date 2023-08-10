@@ -1,6 +1,6 @@
 import React from "react";
 
-const PlantsPage = () => {
+const Plants = () => {
   return (
     <>
       <h4>Plants Page</h4>
@@ -8,4 +8,4 @@ const PlantsPage = () => {
   );
 };
 
-export default PlantsPage;
+export default Plants;
