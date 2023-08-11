@@ -37,6 +37,12 @@ const About = () => {
   );
 };
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  p {
+    line-height: 2;
+    color: var(--clr-grey-5);
+    margin-top: 2rem;
+  }
+`;
 
 export default About;
