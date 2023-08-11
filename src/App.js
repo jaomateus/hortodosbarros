@@ -2,7 +2,8 @@ import React from "react";
 import "./App.css";
 import {
   About,
-  Plants,
+  PlantShop,
+  BookShop,
   Error,
   PrivateRoute,
   Cart,
@@ -27,16 +28,12 @@ const router = createBrowserRouter([
         element: <About />,
       },
       {
-        path: "plants",
-        element: <Plants />,
+        path: "plantshop",
+        element: <PlantShop />,
       },
       {
-        path: "plant",
-        element: <SinglePlant />,
-      },
-      {
-        path: "cart",
-        element: <Cart />,
+        path: "bookshop",
+        element: <BookShop />,
       },
       {
         path: "checkout",

@@ -14,8 +14,11 @@ const navbar = () => {
           <NavLink to="/about" className="nav-link">
             About
           </NavLink>
-          <NavLink to="/plants" className="nav-link">
-            Plantas
+          <NavLink to="/plantshop" className="nav-link">
+            Plants
+          </NavLink>
+          <NavLink to="/bookshop" className="nav-link">
+            Books
           </NavLink>
         </div>
       </div>
@@ -27,7 +30,7 @@ const Wrapper = styled.nav`
   background: var(--clr-white);
   .nav-center {
     width: 90vw;
-    max-width: var(--max-width);
+    /* max-width: var(--max-width); */
     margin: 0 auto;
     display: flex;
     flex-direction: column;
