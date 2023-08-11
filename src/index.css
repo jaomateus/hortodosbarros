@@ -202,5 +202,9 @@ p {
   padding: 5rem 0;
 }
 .page {
+  width: 90vw;
+  margin: 0 auto;
+  /* max-width: var(--max-width); */
   min-height: calc(100vh - (20vh + 10rem));
+  padding: 1.5rem 2rem;
 }
