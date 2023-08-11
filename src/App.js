@@ -12,6 +12,7 @@ import {
   Landing,
 } from "./pages";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { loader as plantShopLoader } from "./pages/PlantShop";
 import Checkout from "./pages/Checkout";
 
 const router = createBrowserRouter([
@@ -31,6 +32,7 @@ const router = createBrowserRouter([
       {
         path: "plantshop",
         element: <PlantShop />,
+        loader: plantShopLoader,
       },
       {
         path: "bookshop",
