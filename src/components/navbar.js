@@ -23,8 +23,8 @@ const navbar = () => {
           <NavLink to="/" className="nav-link">
             Courses
           </NavLink>
-          <NavLink to="/" className="nav-link">
-            Knowledge
+          <NavLink to="/newsletter" className="nav-link">
+            Newsletter
           </NavLink>
         </div>
       </div>

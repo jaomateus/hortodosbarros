@@ -1,4 +1,4 @@
-React Router
+React Router (loaders, actions)
 Styled Components
 Context API
 Error Handling

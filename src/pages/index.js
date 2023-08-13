@@ -9,3 +9,4 @@ export { default as Plant } from "./Plant";
 export { default as HomeLayout } from "./HomeLayout";
 export { default as Landing } from "./Landing";
 export { default as SinglePageError } from "./SinglePageError";
+export { default as Newsletter } from "./Newsletter";

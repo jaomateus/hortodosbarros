@@ -11,10 +11,12 @@ import {
   HomeLayout,
   Landing,
   SinglePageError,
+  Newsletter,
 } from "./pages";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { loader as plantShopLoader } from "./pages/PlantShop";
 import { loader as plantLoader } from "./pages/Plant";
+import { action as newsletterAction } from "./pages/Newsletter";
 
 import Checkout from "./pages/Checkout";
 
@@ -47,6 +49,11 @@ const router = createBrowserRouter([
       {
         path: "bookshop",
         element: <BookShop />,
+      },
+      {
+        path: "newsletter",
+        element: <Newsletter />,
+        action: newsletterAction,
       },
       {
         path: "checkout",
