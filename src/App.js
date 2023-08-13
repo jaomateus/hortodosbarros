@@ -7,13 +7,15 @@ import {
   Error,
   PrivateRoute,
   Cart,
-  SinglePlant,
+  Plant,
   HomeLayout,
   Landing,
   SinglePageError,
 } from "./pages";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { loader as plantShopLoader } from "./pages/PlantShop";
+import { loader as plantLoader } from "./pages/Plant";
+
 import Checkout from "./pages/Checkout";
 
 const router = createBrowserRouter([
@@ -35,6 +37,12 @@ const router = createBrowserRouter([
         element: <PlantShop />,
         loader: plantShopLoader,
         errorElement: <SinglePageError />,
+      },
+      {
+        path: "plant/:id",
+        errorElement: <SinglePageError />,
+        loader: plantLoader,
+        element: <Plant />,
       },
       {
         path: "bookshop",
