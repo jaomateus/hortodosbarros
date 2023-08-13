@@ -3,3 +3,4 @@ Styled Components
 Context API
 Error Handling
 React Router = Loader function
+Fully responsive

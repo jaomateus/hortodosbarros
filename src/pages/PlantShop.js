@@ -2,7 +2,9 @@ import React from "react";
 import { useLoaderData } from "react-router-dom";
 import { styled } from "styled-components";
 import axios from "axios";
+import { PlantList } from "../components";
 
+// To retrieve a client token in case we need to make http requests from the client side
 // const getTrefleClientToken = async () => {
 //   try {
 //     const response = await axios.post(
@@ -14,32 +16,21 @@ import axios from "axios";
 //     console.error("Error fetching client token:", error);
 //     return null;
 //   }
-// };1
-
-const getAllPlants = async () => {
-  try {
-    const response = await axios.get("http://localhost:3000/all_plants");
-    const data = response.data;
-  } catch (error) {
-    console.error("Error fetching plants:", error);
-    return null;
-  }
-};
+// };
 
 export const loader = async () => {
-  const searchTerm = "Arbutus unedo";
+  const searchTerm = "";
   const response = await axios.get("http://localhost:3000/all_plants");
+  console.log(response);
   return { plants: response.data.data, searchTerm };
 };
 
 const PlantShop = () => {
   const { plants, searchTerm } = useLoaderData();
-  console.log(plants);
-  console.log(searchTerm);
   return (
-    <Wrapper>
-      <h4>J</h4>
-    </Wrapper>
+    <>
+      <PlantList plants={plants} />
+    </>
   );
 };
 
