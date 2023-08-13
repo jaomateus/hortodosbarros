@@ -8,3 +8,4 @@ export { default as Cart } from "./Cart";
 export { default as SinglePlant } from "./SinglePlant";
 export { default as HomeLayout } from "./HomeLayout";
 export { default as Landing } from "./Landing";
+export { default as SinglePageError } from "./SinglePageError";
