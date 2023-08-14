@@ -77,9 +77,9 @@ const Newsletter = () => {
         type="submit"
         className="btn btn-block"
         style={{ marginTop: "0.5rem" }}
-        disables={isSubmitting}
+        disabled={isSubmitting}
       >
-        {isSubmitting ? "submitting" : "submit"}}
+        {isSubmitting ? "submitting" : "submit"}
       </button>
     </Form>
   );

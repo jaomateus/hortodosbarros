@@ -1,6 +1,6 @@
 import React from "react";
 import { Outlet, useNavigation } from "react-router-dom";
-import { Navbar } from "../components";
+import { Navbar, Sidebar, Footer } from "../components";
 
 const HomeLayout = () => {
   const navigation = useNavigation();
@@ -9,11 +9,13 @@ const HomeLayout = () => {
   return (
     <>
       <Navbar />
+      <Sidebar />
       <section className="page">
         {isPageLoading ? <div className="loading" /> : <Outlet />}
         {/* New feature from react-router that allows me to pass global context values to the outlet, being available everywhere in my app. Look at example on Plantcard component.
         <Outlet context={{value}}/>   */}
       </section>
+      <Footer />
     </>
   );
 };

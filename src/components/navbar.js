@@ -1,38 +1,41 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import styled from "styled-components";
+import { FaBars } from "react-icons/fa";
+import { links } from "../utils/constants";
+import { NavbarButtons } from ".";
 
 const navbar = () => {
   return (
-    <Wrapper>
+    <NavContainer>
       <div className="nav-center">
-        <span className="logo">Horto dos Barros</span>
-        <div className="nav-links">
-          <NavLink to="/" className="nav-link">
-            Home
-          </NavLink>
-          <NavLink to="/about" className="nav-link">
-            About
-          </NavLink>
-          <NavLink to="/plantshop" className="nav-link">
-            Plants
-          </NavLink>
-          <NavLink to="/bookshop" className="nav-link">
-            Books
-          </NavLink>
-          <NavLink to="/" className="nav-link">
-            Courses
-          </NavLink>
-          <NavLink to="/newsletter" className="nav-link">
-            Newsletter
-          </NavLink>
+        <div className="nav-header">
+          <Link to="/">
+            <span className="logo">Horto dos Barros</span>
+          </Link>
+          <button type="button" className="nav-toggle">
+            <FaBars />
+          </button>
         </div>
+        <ul className="nav-links">
+          {links.map((link) => {
+            const { id, text, url } = link;
+            return (
+              <li key={id}>
+                <NavLink to={url} className="nav-link">
+                  {text}
+                </NavLink>
+              </li>
+            );
+          })}
+        </ul>
+        <NavbarButtons />
       </div>
-    </Wrapper>
+    </NavContainer>
   );
 };
 
-const Wrapper = styled.nav`
+const NavContainer = styled.nav`
   background: var(--clr-white);
   .nav-center {
     width: 90vw;
@@ -43,18 +46,35 @@ const Wrapper = styled.nav`
     padding: 1.5rem 2rem;
   }
 
+  .nav-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
   .logo {
-    font-size: clamp(1.5rem, 3vw, 3rem);
+    font-size: clamp(1.5rem, 2vw, 2rem);
     color: var(--clr-primary-1);
     font-weight: 700;
     letter-spacing: 2px;
   }
 
+  .nav-toggle {
+    background: transparent;
+    border: transparent;
+    color: var(--clr-primary-1);
+    cursor: pointer;
+    svg {
+      font-size: 1.5rem;
+    }
+  }
+
   .nav-links {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    margin-top: 1rem;
+    display: none;
+  }
+
+  .navbar-btn-wrapper {
+    display: none;
   }
 
   .nav-link {
@@ -68,10 +88,6 @@ const Wrapper = styled.nav`
     color: var(--clr-primary-1);
   }
 
-  .active {
-    color: var(--clr-primary-1);
-  }
-
   /* media queries */
   @media (min-width: 768px) {
     .nav-center {
@@ -80,8 +96,31 @@ const Wrapper = styled.nav`
       align-items: center;
     }
     .nav-links {
-      flex-direction: row;
-      margin-top: 0;
+      display: flex;
+      justify-content: center;
+      a {
+        color: var(--clr-grey-3);
+        font-size: 1rem;
+        text-transform: capitalize;
+        letter-spacing: var(--spacing);
+        padding: 0.5rem;
+      }
+      .active {
+        color: var(--clr-primary-1);
+        font-weight: 600;
+      }
+    }
+
+    .nav-link .active {
+      color: var(--clr-primary-1);
+    }
+
+    .nav-toggle {
+      display: none;
+    }
+
+    .navbar-btn-wrapper {
+      display: grid;
     }
   }
 `;

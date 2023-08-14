@@ -1,6 +1,5 @@
 import React from "react";
 import { useLoaderData } from "react-router-dom";
-import { styled } from "styled-components";
 import axios from "axios";
 import { PlantList } from "../components";
 
@@ -27,13 +26,7 @@ export const loader = async () => {
 
 const PlantShop = () => {
   const { plants, searchTerm } = useLoaderData();
-  return (
-    <>
-      <PlantList plants={plants} />
-    </>
-  );
+  return <PlantList plants={plants} />;
 };
-
-const Wrapper = styled.div``;
 
 export default PlantShop;
