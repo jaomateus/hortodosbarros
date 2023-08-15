@@ -1,7 +1,7 @@
 import React from "react";
 import { styled } from "styled-components";
 
-const footer = () => {
+const Footer = () => {
   return (
     <Wrapper>
       <h5>
@@ -36,4 +36,4 @@ const Wrapper = styled.footer`
   }
 `;
 
-export default footer;
+export default Footer;

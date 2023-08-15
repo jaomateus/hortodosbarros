@@ -10,7 +10,7 @@ const HomeLayout = () => {
     <>
       <Navbar />
       <Sidebar />
-      <section className="page">
+      <section className="page section section-center">
         {isPageLoading ? <div className="loading" /> : <Outlet />}
         {/* New feature from react-router that allows me to pass global context values to the outlet, being available everywhere in my app. Look at example on Plantcard component.
         <Outlet context={{value}}/>   */}

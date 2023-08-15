@@ -4,8 +4,10 @@ import styled from "styled-components";
 import { FaBars } from "react-icons/fa";
 import { links } from "../utils/constants";
 import { NavbarButtons } from ".";
+import { useProductsContext } from "../context/products_context";
 
-const navbar = () => {
+const Navbar = () => {
+  const { openSidebar } = useProductsContext();
   return (
     <NavContainer>
       <div className="nav-center">
@@ -13,7 +15,7 @@ const navbar = () => {
           <Link to="/">
             <span className="logo">Horto dos Barros</span>
           </Link>
-          <button type="button" className="nav-toggle">
+          <button type="button" className="nav-toggle" onClick={openSidebar}>
             <FaBars />
           </button>
         </div>
@@ -28,6 +30,11 @@ const navbar = () => {
               </li>
             );
           })}
+          <li>
+            <NavLink to="/checkout" className="nav-link">
+              checkout
+            </NavLink>
+          </li>
         </ul>
         <NavbarButtons />
       </div>
@@ -36,6 +43,7 @@ const navbar = () => {
 };
 
 const NavContainer = styled.nav`
+  height: 5rem;
   background: var(--clr-white);
   .nav-center {
     width: 90vw;
@@ -111,10 +119,6 @@ const NavContainer = styled.nav`
       }
     }
 
-    .nav-link .active {
-      color: var(--clr-primary-1);
-    }
-
     .nav-toggle {
       display: none;
     }
@@ -125,4 +129,4 @@ const NavContainer = styled.nav`
   }
 `;
 
-export default navbar;
+export default Navbar;

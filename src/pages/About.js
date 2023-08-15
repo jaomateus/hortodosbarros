@@ -1,47 +1,78 @@
 import React from "react";
 import { styled } from "styled-components";
+import aboutImg from "../assets/nest.jpeg";
 
 const About = () => {
   return (
     <Wrapper>
-      <h3>Nurturing life at Horto dos Barros</h3>
-      <p>
-        Welcome to Hortos dos Barros, a haven of life nestled near Praia da
-        Areia Branca, Portugal. Our journey began three years ago, rooted in a
-        profound mission of restoration and revival. Hortos dos Barros is more
-        than a garden - it's a testament to possibility. We embarked on this
-        venture with a simple yet profound purpose: to heal the land that was
-        once bound by chemicals and to nurture a thriving ecosystem where all
-        creatures find solace. In these three years, our soil has transformed
-        from barren to bountiful, a testament to our unwavering dedication to
-        regeneration. Though we are on a journey with a horizon yet to be
-        reached, each day unveils a richer, more vibrant earth than the one
-        before. Our trees, still young and reaching for the sky, symbolize our
-        shared journey toward a flourishing and self-sustaining ecosystem. At
-        Hortos dos Barros, we are architects of a better future. We are
-        nurturing not just plants, but a vision - a vision of a productive yet
-        regenerative landscape. As we tend to our no-till garden, each seed we
-        sow is a promise to the earth, a promise to coexist harmoniously with
-        the natural world. Our dream extends beyond our borders. We strive to be
-        a beacon of hope for our region, an embodiment of what is possible when
-        we prioritize restoration and sustainability. Our slow farming approach
-        is a deliberate choice, a testament to our commitment to giving nature
-        the time it needs to flourish once again. So, join us in this unfolding
-        narrative of renewal. Step into Hortos dos Barros and become a part of a
-        story that is still being written - a story of growth, transformation,
-        and a shared commitment to cultivating life in all its forms. Together,
-        we are sowing the seeds of a thriving future, one rooted in respect for
-        the past and hope for the generations yet to come.
-      </p>
+      <article className="img-container">
+        <img src={aboutImg} alt="nest" />
+      </article>
+      <article className="content">
+        <div className="title">
+          <h2>our story</h2>
+          <div className="underline"></div>
+        </div>
+        <p>
+          Welcome to Hortos dos Barros, a vibrant haven near Praia da Areia
+          Branca, Portugal. Our journey began three years ago with a mission of
+          land restoration. Hortos dos Barros is more than a garden; it's a
+          testament to possibility. We aim to heal the land, nurture a diverse
+          ecosystem, and create a flourishing, self-sustaining environment. Our
+          dedication to regeneration is evident in our transformed soil, now
+          bountiful and rich. Our young trees symbolize a shared journey toward
+          a thriving ecosystem. At Hortos dos Barros, we're architects of a
+          better future, nurturing a vision of productive, regenerative
+          landscapes. Each seed sown is a promise to coexist harmoniously with
+          nature. Our dream extends beyond borders, inspiring hope for our
+          region through restoration and sustainability. Our slow farming
+          approach reflects our commitment to giving nature the time to
+          flourish. Join us at Hortos dos Barros and be part of a growing
+          story—a narrative of renewal, growth, and shared commitment to
+          cultivating life for generations to come.
+        </p>
+      </article>
     </Wrapper>
   );
 };
 
-const Wrapper = styled.div`
+const Wrapper = styled.section`
+  min-height: 60vh;
+  display: grid;
+  place-items: center;
+  .img-container {
+    display: none;
+  }
+
+  img {
+    width: 100%;
+    display: block;
+    border-radius: var(--radius);
+    height: 600px;
+    object-fit: cover;
+  }
   p {
     line-height: 2;
-    color: var(--clr-grey-5);
+    max-width: 45em;
+    margin: 0 auto;
     margin-top: 2rem;
+    color: var(--clr-grey-5);
+  }
+  .title {
+    text-align: left;
+  }
+  .underline {
+    margin-left: 0;
+  }
+  @media (min-width: 992px) {
+    height: calc(100vh - 15rem);
+    grid-template-columns: 1fr 1fr;
+    gap: 8rem;
+
+    .img-container {
+      display: block;
+      position: relative;
+    }
   }
 `;
 

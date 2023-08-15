@@ -70,7 +70,7 @@ ul {
 }
 a {
   text-decoration: none;
-  margin: 0;
+  margin: ;
 }
 hr {
   border: none;
@@ -201,11 +201,15 @@ p {
 .page-100 {
   min-height: calc(100vh - 10rem);
   padding: 5rem 0;
+  display: flex;
+  align-items: center;
 }
+
 .page {
   width: 90vw;
   margin: 0 auto;
+
   /* max-width: var(--max-width); */
-  min-height: calc(100vh - (20vh + 10rem));
+  min-height: calc(100vh - 10rem);
   padding: 1.5rem 2rem;
 }
