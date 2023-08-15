@@ -9,3 +9,4 @@ export { default as PageHero } from "./PageHero";
 export { default as Featured } from "./Featured";
 export { default as LandingHero } from "./LandingHero";
 export { default as Contact } from "./Contact";
+export { default as Services } from "./Services";

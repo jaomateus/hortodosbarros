@@ -201,8 +201,6 @@ p {
 .page-100 {
   min-height: calc(100vh - 10rem);
   padding: 5rem 0;
-  display: flex;
-  align-items: center;
 }
 
 .page {

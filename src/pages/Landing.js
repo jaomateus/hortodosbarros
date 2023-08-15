@@ -1,5 +1,5 @@
 import React from "react";
-import { Featured, LandingHero, Contact } from "../components";
+import { Featured, LandingHero, Contact, Services } from "../components";
 import { styled } from "styled-components";
 
 const Landing = () => {
@@ -7,6 +7,7 @@ const Landing = () => {
     <main>
       <LandingHero />
       <Featured />
+      <Services />
       <Contact />
     </main>
   );
