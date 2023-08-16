@@ -48,3 +48,7 @@ export const services = [
       "In three years, Hortos dos Barros transformed barren soil into thriving land, embracing restoration, diversity, and a sustainable journey.",
   },
 ];
+
+export const plants_url = "http://localhost:3000/plants";
+
+export const plant_url = "http://localhost:3000/plant/";

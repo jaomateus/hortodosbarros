@@ -16,6 +16,7 @@ import {
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { loader as plantShopLoader } from "./pages/PlantShop";
 import { loader as plantLoader } from "./pages/Plant";
+import { loader as plantsFeaturedLoader } from "./pages/Landing";
 import { action as newsletterAction } from "./pages/Newsletter";
 
 import Checkout from "./pages/Checkout";
@@ -29,6 +30,7 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Landing />,
+        loader: plantsFeaturedLoader,
       },
       {
         path: "about",

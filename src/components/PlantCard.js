@@ -1,14 +1,16 @@
 import React from "react";
 import { Link, useOutletContext } from "react-router-dom";
 import { styled } from "styled-components";
+import img from "../assets/Image_not_available.png";
 
 const PlantCard = ({ id, scientific_name, common_name, family, image_url }) => {
   // const data = useOutletContext()   To get global loading values . Check HomeLayout for more info.
+  const plant_img = image_url !== null ? image_url : img;
   return (
     <Wrapper>
       <div className="card-container">
         <div className="img-container">
-          <img src={image_url} alt={scientific_name} className="img" />
+          <img src={plant_img} alt={scientific_name} className="img" />
         </div>
         <div className="footer">
           <h4>{scientific_name}</h4>

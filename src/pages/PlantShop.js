@@ -2,6 +2,7 @@ import React from "react";
 import { useLoaderData } from "react-router-dom";
 import axios from "axios";
 import { PlantList } from "../components";
+import { plants_url as url } from "../utils/constants";
 
 // To retrieve a client token in case we need to make http requests from the client side
 // const getTrefleClientToken = async () => {
@@ -19,9 +20,9 @@ import { PlantList } from "../components";
 
 export const loader = async () => {
   const searchTerm = "";
-  const response = await axios.get("http://localhost:3000/all_plants");
-  console.log(response);
-  return { plants: response.data.data, searchTerm };
+  const response = await axios.get(url);
+  console.log(response.data);
+  return { plants: response.data, searchTerm };
 };
 
 const PlantShop = () => {
