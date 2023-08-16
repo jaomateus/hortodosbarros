@@ -52,3 +52,5 @@ export const services = [
 export const plants_url = "http://localhost:3000/plants";
 
 export const plant_url = "http://localhost:3000/plant/";
+
+export const featured_url = "http://localhost:3000/featured/";

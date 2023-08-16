@@ -21,7 +21,6 @@ import { plants_url as url } from "../utils/constants";
 export const loader = async () => {
   const searchTerm = "";
   const response = await axios.get(url);
-  console.log(response.data);
   return { plants: response.data, searchTerm };
 };
 
