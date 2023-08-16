@@ -11,3 +11,5 @@ export { default as LandingHero } from "./LandingHero";
 export { default as Contact } from "./Contact";
 export { default as Services } from "./Services";
 export { default as PlantFeaturedCard } from "./PlantFeaturedCard";
+export { default as PlantImages } from "./PlantImages";
+export { default as Stars } from "./Stars";

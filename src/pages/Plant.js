@@ -2,98 +2,98 @@ import React from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import axios from "axios";
 import { styled } from "styled-components";
+import { formatPrice } from "../utils/helpers";
+// components
+import { PlantImages } from "../components";
 
 export const loader = async ({ params }) => {
   const { id } = params;
   const response = await axios.get(`http://localhost:3000/plants/${id}`);
-  console.log(response.data);
-
-  // console.log(response.data.data);
   return { plant: response.data, id };
 };
 
 const Plant = () => {
   const plantData = useLoaderData();
+  console.log(plantData.plant);
+
   if (!plantData) return <h2>something went wrong...</h2>;
+
   const {
     family,
     genus,
     scientific_name,
     common_name,
     image_url,
+    price,
+    stock,
   } = plantData.plant;
+
   const id = plantData.id;
+
   return (
     <Wrapper>
-      <header>
-        <Link to="/" className="btn">
-          Back home
+      <div className="section section-center page">
+        <Link to="/plants" className="btn">
+          back to plants
         </Link>
-        <h3>{scientific_name}</h3>
-      </header>
-      <div className="plant">
-        <img src={image_url} alt={scientific_name} />
-        <div className="plant-info">
-          <p>
-            <span className="plant-data">common name: </span>
-            {common_name}
-          </p>
-          <p>
-            <span className="plant-data">scientific name: </span>
-            {scientific_name}
-          </p>
-          <p>
-            <span className="plant-data">family: </span>
-            {family.name}
-          </p>
-          <p>
-            <span className="plant-data">genus: </span>
-            {genus.name}
-          </p>
+        <div className="product-center">
+          <PlantImages images={image_url} />
+          <section className="content">
+            <h2>{scientific_name}</h2>
+            {/* <Stars stars={stars} reviews={reviews} /> */}
+            <h5 className="price">{formatPrice(price)}</h5>
+            <p className="desc">{common_name}</p>
+            <p className="info">
+              <span>Available : </span>
+              {stock > 0 ? "In stock" : "out of stock"}
+            </p>
+            <p className="info">
+              {/* <span>SKU :</span>
+              {sku} */}
+            </p>
+            <p className="info">
+              {/* <span>Brand :</span>
+              {company} */}
+            </p>
+            <hr />
+            {/* {stock > 0 && <AddToCart product={product} />} */}
+          </section>
         </div>
       </div>
     </Wrapper>
   );
 };
 
-const Wrapper = styled.div`
-  header {
-    text-align: center;
-    margin-bottom: 3rem;
-    .btn {
-      margin-bottom: 1rem;
+const Wrapper = styled.main`
+  .product-center {
+    display: grid;
+    gap: 4rem;
+    margin-top: 2rem;
+  }
+  .price {
+    color: var(--clr-primary-5);
+  }
+  .desc {
+    line-height: 2;
+    max-width: 45em;
+  }
+  .info {
+    text-transform: capitalize;
+    width: 300px;
+    display: grid;
+    grid-template-columns: 125px 1fr;
+    span {
+      font-weight: 700;
     }
   }
 
-  .img {
-    border-radius: var(--radius);
-  }
-
-  .plant-info {
-    padding-top: 2rem;
-  }
-
-  .plant p {
-    font-weight: 700;
-    text-transform: capitalize;
-    line-height: 2;
-    margin-bottom: 1rem;
-  }
-
-  .plant-data {
-    margin: 0.5rem;
-    font-weight: 900;
-    padding: 0.25rem 0.5rem;
-    color: var(--clr-grey-2);
-    letter-spacing: var(--spacing);
-  }
-
   @media (min-width: 992px) {
-    .plant {
-      display: grid;
-      grid-template-columns: 2fr 3fr;
-      gap: 3rem;
+    .product-center {
+      grid-template-columns: 1fr 1fr;
       align-items: center;
+    }
+    .price {
+      font-size: 1.25rem;
     }
   }
 `;
