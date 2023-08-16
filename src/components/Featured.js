@@ -3,9 +3,6 @@ import { styled } from "styled-components";
 import PlantFeaturedCard from "./PlantFeaturedCard";
 
 const Featured = ({ featured }) => {
-  // const { scientific_name, img_url } = featured;
-  // console.log(scientific_name);
-  // console.log(img_url);
   return (
     <Wrapper className="section">
       <div className="title">
@@ -13,8 +10,7 @@ const Featured = ({ featured }) => {
         <div className="underline"></div>
       </div>
       <div className="section-center featured">
-        {featured.map((plant) => {
-          console.log(plant);
+        {featured.slice(0, 3).map((plant) => {
           return <PlantFeaturedCard key={plant.id} {...plant} />;
         })}
       </div>

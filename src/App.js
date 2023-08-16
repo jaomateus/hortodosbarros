@@ -43,7 +43,7 @@ const router = createBrowserRouter([
         errorElement: <SinglePageError />,
       },
       {
-        path: "plant/:id",
+        path: "plants/:id",
         errorElement: <SinglePageError />,
         loader: plantLoader,
         element: <Plant />,

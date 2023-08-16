@@ -5,30 +5,24 @@ import { styled } from "styled-components";
 
 export const loader = async ({ params }) => {
   const { id } = params;
-  const response = await axios.get(`http://localhost:3000/plant/${id}`);
-  console.log(response.data.data);
-  return { plant: response.data.data, id };
+  const response = await axios.get(`http://localhost:3000/plants/${id}`);
+  console.log(response.data);
+
+  // console.log(response.data.data);
+  return { plant: response.data, id };
 };
 
 const Plant = () => {
   const plantData = useLoaderData();
-
   if (!plantData) return <h2>something went wrong...</h2>;
-
   const {
     family,
     genus,
-    hybrids,
-    main_species,
     scientific_name,
     common_name,
-    subspecies,
-    varieties,
-    vegetable,
     image_url,
   } = plantData.plant;
   const id = plantData.id;
-
   return (
     <Wrapper>
       <header>
@@ -51,10 +45,6 @@ const Plant = () => {
           <p>
             <span className="plant-data">family: </span>
             {family.name}
-          </p>
-          <p>
-            <span className="plant-data">genus: </span>
-            {genus.name}
           </p>
           <p>
             <span className="plant-data">genus: </span>

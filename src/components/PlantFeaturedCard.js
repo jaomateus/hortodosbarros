@@ -2,24 +2,26 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { styled } from "styled-components";
 import { FaSearch } from "react-icons/fa";
+import { formatPrice } from "../utils/helpers";
 
 const PlantFeaturedCard = ({
   scientific_name,
   image_url,
   common_name,
-  id_trefle,
+  id,
+  price,
 }) => {
   return (
     <Wrapper>
       <div className="container">
         <img src={image_url} alt={common_name} />
-        <Link to={`plants${id_trefle}`} className="link">
+        <Link to={`plants/${id}`} className="link">
           <FaSearch />
         </Link>
       </div>
       <footer>
         <h5>{scientific_name}</h5>
-        <p>{common_name}</p>
+        <p>{formatPrice(price)}</p>
       </footer>
     </Wrapper>
   );
