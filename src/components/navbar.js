@@ -1,13 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 import styled from "styled-components";
 import { FaBars } from "react-icons/fa";
 import { links } from "../utils/constants";
 import { NavbarButtons } from ".";
-import { useProductsContext } from "../context/products_context";
+import Sidebar from "../components/Sidebar";
 
 const Navbar = () => {
-  const { openSidebar } = useProductsContext();
+  const [sidebar, setSidebar] = useState(false);
+
+  const showSidebar = () => {
+    setSidebar(!sidebar);
+  };
+
   return (
     <NavContainer>
       <div className="nav-center">
@@ -15,7 +20,7 @@ const Navbar = () => {
           <Link to="/">
             <span className="logo">Horto dos Barros</span>
           </Link>
-          <button type="button" className="nav-toggle" onClick={openSidebar}>
+          <button type="button" className="nav-toggle" onClick={showSidebar}>
             <FaBars />
           </button>
         </div>
@@ -37,6 +42,9 @@ const Navbar = () => {
           </li>
         </ul>
         <NavbarButtons />
+      </div>
+      <div className="sidebar">
+        <Sidebar sidebar={sidebar} showSidebar={showSidebar} />
       </div>
     </NavContainer>
   );
