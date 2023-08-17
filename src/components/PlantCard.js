@@ -16,7 +16,7 @@ const PlantCard = ({ id, scientific_name, common_name, family, image_url }) => {
           <h4>{scientific_name}</h4>
           <h5>{common_name}</h5>
           <h5>{family}</h5>
-          <Link to={`/plant/${id}`} className="btn">
+          <Link to={`/plants/${id}`} className="btn">
             Details
           </Link>
         </div>

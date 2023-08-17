@@ -13,3 +13,4 @@ export { default as Services } from "./Services";
 export { default as PlantFeaturedCard } from "./PlantFeaturedCard";
 export { default as PlantImages } from "./PlantImages";
 export { default as Stars } from "./Stars";
+export { default as AddToCart } from "./AddToCart";

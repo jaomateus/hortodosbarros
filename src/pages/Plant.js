@@ -4,7 +4,7 @@ import axios from "axios";
 import { styled } from "styled-components";
 import { formatPrice } from "../utils/helpers";
 // components
-import { PlantImages } from "../components";
+import { PlantImages, Stars, AddToCart } from "../components";
 
 export const loader = async ({ params }) => {
   const { id } = params;
@@ -19,16 +19,21 @@ const Plant = () => {
   if (!plantData) return <h2>something went wrong...</h2>;
 
   const {
-    family,
-    genus,
+    sun_requirements,
+    drought_tolerance,
     scientific_name,
     common_name,
     image_url,
     price,
     stock,
+    stars,
+    reviews,
   } = plantData.plant;
 
   const id = plantData.id;
+
+  const description =
+    "Chinook Hops (Humulus lupulus) is a versatile variety, known for its spicy, piney aroma. Ideal for craft brewing, this hop adds a robust flavor profile to ales and lagers. Its vibrant green cones not only promise a rich brew but also add a touch of beauty to gardens.";
 
   return (
     <Wrapper>
@@ -40,23 +45,24 @@ const Plant = () => {
           <PlantImages images={image_url} />
           <section className="content">
             <h2>{scientific_name}</h2>
-            {/* <Stars stars={stars} reviews={reviews} /> */}
+            <Stars stars={stars} reviews={reviews} />
             <h5 className="price">{formatPrice(price)}</h5>
             <p className="desc">{common_name}</p>
+            <p className="desc">{description}</p>
             <p className="info">
               <span>Available : </span>
               {stock > 0 ? "In stock" : "out of stock"}
             </p>
             <p className="info">
-              {/* <span>SKU :</span>
-              {sku} */}
+              <span>Sun requirements :</span>
+              {sun_requirements}
             </p>
             <p className="info">
-              {/* <span>Brand :</span>
-              {company} */}
+              <span>Drought tolerance :</span>
+              {drought_tolerance}
             </p>
             <hr />
-            {/* {stock > 0 && <AddToCart product={product} />} */}
+            {stock > 0 && <AddToCart plant={plantData.plant} />}
           </section>
         </div>
       </div>
@@ -79,9 +85,9 @@ const Wrapper = styled.main`
   }
   .info {
     text-transform: capitalize;
-    width: 300px;
+    width: 500px;
     display: grid;
-    grid-template-columns: 125px 1fr;
+    grid-template-columns: 200px 1fr;
     span {
       font-weight: 700;
     }
