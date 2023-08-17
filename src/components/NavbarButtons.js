@@ -2,10 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { styled } from "styled-components";
 import { BsFillPersonFill, BsFillBagFill } from "react-icons/bs";
-import { useProductsContext } from "../context/products_context";
+// import { useProductsContext } from "../context/products_context";
 
 const NavbarButtons = () => {
-  const { closeSidebar } = useProductsContext();
+  const closeSidebar = () => {};
 
   return (
     <Wrapper className="navbar-btn-wrapper">

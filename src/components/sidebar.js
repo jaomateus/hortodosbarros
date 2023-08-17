@@ -4,21 +4,16 @@ import { Link, NavLink } from "react-router-dom";
 import { styled } from "styled-components";
 import { links } from "../utils/constants";
 import NavbarButtons from "./NavbarButtons";
-import { useProductsContext } from "../context/products_context";
 
-const Sidebar = () => {
-  const { isSidebarOpen, closeSidebar } = useProductsContext();
-
+const Sidebar = ({ sidebar, showSidebar }) => {
   return (
     <SidebarContainer>
-      <aside
-        className={`${isSidebarOpen ? "sidebar show-sidebar" : "sidebar"}`}
-      >
+      <aside className={sidebar ? "sidebar show-sidebar" : "sidebar"}>
         <div className="sidebar-header">
           <Link to="/">
             <span className="logo">Horto dos Barros</span>
           </Link>
-          <button className="close-btn" type="button" onClick={closeSidebar}>
+          <button className="close-btn" type="button" onClick={showSidebar}>
             <FaTimes />
           </button>
         </div>
@@ -26,14 +21,14 @@ const Sidebar = () => {
           {links.map(({ id, text, url }) => {
             return (
               <li key={id}>
-                <NavLink to={url} onClick={closeSidebar}>
+                <NavLink to={url} onClick={showSidebar}>
                   {text}
                 </NavLink>
               </li>
             );
           })}
           <li>
-            <NavLink to="/checkout" onClick={closeSidebar}>
+            <NavLink to="/checkout" onClick={showSidebar}>
               checkout
             </NavLink>
           </li>
