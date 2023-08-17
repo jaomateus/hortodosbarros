@@ -9,15 +9,13 @@ import { PlantImages, Stars, AddToCart } from "../components";
 export const loader = async ({ params }) => {
   const { id } = params;
   const response = await axios.get(`http://localhost:3000/plants/${id}`);
-  return { plant: response.data, id };
+  return response.data;
 };
 
 const Plant = () => {
-  const plantData = useLoaderData();
-  console.log(plantData.plant);
+  const plant = useLoaderData();
 
-  if (!plantData) return <h2>something went wrong...</h2>;
-
+  if (!plant) return <h2>something went wrong...</h2>;
   const {
     sun_requirements,
     drought_tolerance,
@@ -28,9 +26,8 @@ const Plant = () => {
     stock,
     stars,
     reviews,
-  } = plantData.plant;
-
-  const id = plantData.id;
+    id,
+  } = plant;
 
   const description =
     "Chinook Hops (Humulus lupulus) is a versatile variety, known for its spicy, piney aroma. Ideal for craft brewing, this hop adds a robust flavor profile to ales and lagers. Its vibrant green cones not only promise a rich brew but also add a touch of beauty to gardens.";
@@ -62,7 +59,7 @@ const Plant = () => {
               {drought_tolerance}
             </p>
             <hr />
-            {stock > 0 && <AddToCart plant={plantData.plant} />}
+            {stock > 0 && <AddToCart plant={plant} />}
           </section>
         </div>
       </div>
