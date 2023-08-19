@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { FaBars } from "react-icons/fa";
 import { links } from "../utils/constants";
 import { NavbarButtons } from ".";
-import Sidebar from "../components/Sidebar";
+import Sidebar from "./Sidebar";
 
 const Navbar = () => {
   const [sidebar, setSidebar] = useState(false);
