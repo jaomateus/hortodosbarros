@@ -1,8 +1,11 @@
 import React from "react";
 import { useLoaderData } from "react-router-dom";
 import axios from "axios";
-import { PlantList } from "../components";
 import { plants_url as url } from "../utils/constants";
+import { styled } from "styled-components";
+
+// components
+import { PlantList, Sort, Filters } from "../components";
 
 export const loader = async () => {
   const searchTerm = "";
@@ -12,7 +15,33 @@ export const loader = async () => {
 
 const PlantShop = () => {
   const { plants, searchTerm } = useLoaderData();
-  return <PlantList plants={plants} />;
+
+  return (
+    <main>
+      <Wrapper className="page">
+        <div className="section-center plants">
+          <Filters />
+          <div>
+            <Sort />
+            <PlantList />
+          </div>
+        </div>
+      </Wrapper>
+    </main>
+  );
 };
+
+const Wrapper = styled.div`
+  .plants {
+    display: grid;
+    gap: 3rem 1.5rem;
+    margin: 4rem auto;
+  }
+  @media (min-width: 768px) {
+    .products {
+      grid-template-columns: 200px 1fr;
+    }
+  }
+`;
 
 export default PlantShop;

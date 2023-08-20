@@ -1,32 +1,28 @@
 import React from "react";
 import { styled } from "styled-components";
-import PlantCard from "./PlantCard";
+import { useFilterContext } from "../context/filter_context";
 
-const PlantList = ({ plants }) => {
-  if (!plants) {
-    return (
-      <h4 style={{ textAlign: "center" }}>
-        Sorry, we still don't have that plant on our collection.
-      </h4>
-    );
-  }
+// COMPONENTS
+import { PlantCard, PlantGridView, PlantListView } from "../components";
 
-  return (
-    <main className="page section section-center">
-      <Wrapper>
-        {plants.map((plant) => {
-          const { id, scientific_name, common_name, family, image_url } = plant;
-          return <PlantCard key={plant.id} {...plant} />;
-        })}
-      </Wrapper>
-    </main>
-  );
+const PlantList = () => {
+  const { filtered_plants: plants } = useFilterContext();
+
+  // if (!plants) {
+  //   return (
+  //     <h4 style={{ textAlign: "center" }}>
+  //       Sorry, we still don't have that plant on our collection.
+  //     </h4>
+  //   );
+  // }
+
+  return <PlantGridView plants={plants}>Plant list</PlantGridView>;
 };
 
-const Wrapper = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 3rem;
-`;
+// const Wrapper = styled.div`
+//   display: grid;
+//   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+//   gap: 3rem;
+// `;
 
 export default PlantList;

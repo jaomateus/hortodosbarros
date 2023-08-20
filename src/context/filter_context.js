@@ -16,10 +16,11 @@ export const FilterProvider = ({ children }) => {
 
   useEffect(() => {
     dispatch({ type: LOAD_PLANTS, payload: plants });
+    console.log(plants);
   }, [plants]);
 
   return (
-    <FilterContext.Provider value="filters context">
+    <FilterContext.Provider value={{ ...state }}>
       {children}
     </FilterContext.Provider>
   );

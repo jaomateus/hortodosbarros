@@ -25,17 +25,17 @@ export const PlantsProvider = ({ children }) => {
     try {
       const response = await axios.get(url);
       const plants = response.data;
+      console.log(plants);
       dispatch({ type: GET_PLANTS_SUCCESS, payload: plants });
     } catch (error) {
       dispatch({ type: GET_PLANTS_ERROR });
     }
   };
 
-  // Only necessaary if we don't use the loader, but the loader has a better pewrformance
-  // useEffect(() => {
-  //   // fetchPlants(url);
-  //   // console.log("im working");
-  // }, []);
+  // Only necessaary if we don't use the loader, but the loader has a better performance
+  useEffect(() => {
+    fetchPlants(url);
+  }, []);
 
   return (
     <PlantsContext.Provider value={{ ...state }}>

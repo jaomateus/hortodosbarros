@@ -14,3 +14,7 @@ export { default as PlantFeaturedCard } from "./PlantFeaturedCard";
 export { default as PlantImages } from "./PlantImages";
 export { default as Stars } from "./Stars";
 export { default as AddToCart } from "./AddToCart";
+export { default as Sort } from "./Sort";
+export { default as Filters } from "./Filters";
+export { default as PlantGridView } from "./PlantGridView";
+export { default as PlantListView } from "./PlantListView";
