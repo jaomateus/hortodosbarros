@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useReducer } from "react";
 import reducer from "../reducers/filter_reducer";
-import { usePlantsContext } from "./plants_context";
 import { LOAD_PLANTS } from "../actions";
+import { usePlantsContext } from "./plants_context";
 
 const initialState = {
   filtered_plants: [],
@@ -12,11 +12,11 @@ const FilterContext = React.createContext();
 
 export const FilterProvider = ({ children }) => {
   const { plants } = usePlantsContext();
+  console.log(plants);
   const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
     dispatch({ type: LOAD_PLANTS, payload: plants });
-    console.log(plants);
   }, [plants]);
 
   return (

@@ -39,8 +39,8 @@ const router = createBrowserRouter([
       {
         path: "plantshop",
         element: <PlantShop />,
-        loader: plantShopLoader,
-        errorElement: <SinglePageError />,
+        // loader: plantShopLoader,
+        // errorElement: <SinglePageError />,
       },
       {
         path: "plants/:id",

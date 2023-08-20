@@ -5,15 +5,14 @@ import { styled } from "styled-components";
 import { PlantCard } from "../components";
 
 const PlantGridView = ({ plants }) => {
-  console.log(plants);
   return (
     <Wrapper>
-      {/* <div className="plants-container">
+      <div className="plants-container">
         {plants.map((plant) => {
           const { id, scientific_name, common_name, family, image_url } = plant;
           return <PlantCard key={plant.id} {...plant} />;
         })}
-      </div> */}
+      </div>
     </Wrapper>
   );
 };

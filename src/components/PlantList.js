@@ -3,20 +3,20 @@ import { styled } from "styled-components";
 import { useFilterContext } from "../context/filter_context";
 
 // COMPONENTS
-import { PlantCard, PlantGridView, PlantListView } from "../components";
+import { PlantGridView, PlantListView } from "../components";
 
 const PlantList = () => {
-  const { filtered_plants: plants } = useFilterContext();
+  const { all_plants } = useFilterContext();
 
-  // if (!plants) {
-  //   return (
-  //     <h4 style={{ textAlign: "center" }}>
-  //       Sorry, we still don't have that plant on our collection.
-  //     </h4>
-  //   );
-  // }
+  if (!all_plants) {
+    return (
+      <h5 style={{ textTransform: "none" }}>
+        Sorry, no products matched your search.
+      </h5>
+    );
+  }
 
-  return <PlantGridView plants={plants}>Plant list</PlantGridView>;
+  return <PlantGridView plants={all_plants}>Plant list</PlantGridView>;
 };
 
 // const Wrapper = styled.div`

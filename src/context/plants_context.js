@@ -25,7 +25,6 @@ export const PlantsProvider = ({ children }) => {
     try {
       const response = await axios.get(url);
       const plants = response.data;
-      console.log(plants);
       dispatch({ type: GET_PLANTS_SUCCESS, payload: plants });
     } catch (error) {
       dispatch({ type: GET_PLANTS_ERROR });

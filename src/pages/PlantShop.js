@@ -7,14 +7,14 @@ import { styled } from "styled-components";
 // components
 import { PlantList, Sort, Filters } from "../components";
 
-export const loader = async () => {
-  const searchTerm = "";
-  const response = await axios.get(url);
-  return { plants: response.data, searchTerm };
-};
+// export const loader = async () => {
+//   const searchTerm = "";
+//   const response = await axios.get(url);
+//   return { plants: response.data, searchTerm };
+// };
 
 const PlantShop = () => {
-  const { plants, searchTerm } = useLoaderData();
+  // const { plants, searchTerm } = useLoaderData();
 
   return (
     <main>
@@ -38,7 +38,7 @@ const Wrapper = styled.div`
     margin: 4rem auto;
   }
   @media (min-width: 768px) {
-    .products {
+    .plants {
       grid-template-columns: 200px 1fr;
     }
   }
