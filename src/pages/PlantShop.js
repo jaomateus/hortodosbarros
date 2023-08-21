@@ -18,8 +18,8 @@ const PlantShop = () => {
 
   return (
     <main>
-      <Wrapper className="page">
-        <div className="section-center plants">
+      <Wrapper>
+        <div className="section-center plants page">
           <Filters />
           <div>
             <Sort />

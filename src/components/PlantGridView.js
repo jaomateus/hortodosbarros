@@ -9,24 +9,12 @@ const PlantGridView = ({ plants }) => {
     <Wrapper>
       <div className="plants-container">
         {plants.map((plant) => {
-          const { id, scientific_name, common_name, family, image_url } = plant;
           return <PlantCard key={plant.id} {...plant} />;
         })}
       </div>
     </Wrapper>
   );
 };
-
-// return (
-//   <main className="page section section-center">
-//     <Wrapper>
-//       {plants.map((plant) => {
-//         const { id, scientific_name, common_name, family, image_url } = plant;
-//         return <PlantCard key={plant.id} {...plant} />;
-//       })}
-//     </Wrapper>
-//   </main>
-// );
 
 const Wrapper = styled.section`
   img {

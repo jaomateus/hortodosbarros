@@ -6,23 +6,21 @@ import { useFilterContext } from "../context/filter_context";
 import { PlantGridView, PlantListView } from "../components";
 
 const PlantList = () => {
-  const { all_plants } = useFilterContext();
+  const { filtered_plants: plants, grid_view } = useFilterContext();
 
-  if (!all_plants) {
+  if (!plants) {
     return (
       <h5 style={{ textTransform: "none" }}>
-        Sorry, no products matched your search.
+        Sorry, no products matched your search...
       </h5>
     );
   }
 
-  return <PlantGridView plants={all_plants}>Plant list</PlantGridView>;
-};
+  if (PlantGridView === false) {
+    return <PlantListView plants={plants} />;
+  }
 
-// const Wrapper = styled.div`
-//   display: grid;
-//   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-//   gap: 3rem;
-// `;
+  return <PlantGridView plants={plants}>Plant list</PlantGridView>;
+};
 
 export default PlantList;

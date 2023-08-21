@@ -2,71 +2,82 @@ import React from "react";
 import { Link, useOutletContext } from "react-router-dom";
 import { styled } from "styled-components";
 import img from "../assets/Image_not_available.png";
+import { FaSearch } from "react-icons/fa";
+import { formatPrice } from "../utils/helpers";
 
-const PlantCard = ({ id, scientific_name, common_name, family, image_url }) => {
+const PlantCard = ({ id, scientific_name, image_url, price }) => {
   // const data = useOutletContext()   To get global loading values . Check HomeLayout for more info.
   const plant_img = image_url !== null ? image_url : img;
   return (
     <Wrapper>
-      <div className="card-container">
-        <div className="img-container">
-          <img src={plant_img} alt={scientific_name} className="img" />
-        </div>
-        <div className="footer">
-          <h4>{scientific_name}</h4>
-          <h5>{common_name}</h5>
-          <h5>{family}</h5>
-          <Link to={`/plants/${id}`} className="btn">
-            Details
-          </Link>
-        </div>
+      <div className="container">
+        <img src={plant_img} alt={scientific_name} />
+        <Link to={`/plants/${id}`} className="link">
+          <FaSearch />
+        </Link>
       </div>
+      <footer>
+        <h5>{scientific_name}</h5>
+        <p>{formatPrice(price)}</p>
+      </footer>
     </Wrapper>
   );
 };
 
 const Wrapper = styled.article`
-  display: grid;
-  grid-template-rows: auto 1fr;
-  border-radius: var(--radius);
-
-  .card-container {
-    box-shadow: var(--light-shadow);
-    transition: var(--transition);
-    background: var(--white);
+  .container {
+    position: relative;
+    background: var(--clr-black);
+    border-radius: var(--radius);
   }
-
-  .card-container:hover {
-    box-shadow: var(--dark-shadow);
-  }
-
-  .img-container {
-    width: 100%;
-    height: 300px;
-  }
-
   img {
     width: 100%;
+    display: block;
     object-fit: cover;
-    object-position: center;
-    height: 100%;
-    border-top-left-radius: var(--radius);
-    border-top-right-radius: var(--radius);
+    border-radius: var(--radius);
+    transition: var(--transition);
+  }
+  .link {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--clr-primary-5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    transition: var(--transition);
+    opacity: 0;
+    cursor: pointer;
+    svg {
+      font-size: 1.25rem;
+      color: var(--clr-white);
+    }
+  }
+  .container:hover img {
+    opacity: 0.5;
+  }
+  .container:hover .link {
+    opacity: 1;
+  }
+  footer {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  footer h5,
+  footer p {
+    margin-bottom: 0;
+    font-weight: 400;
   }
 
-  .footer {
-    padding: 1.5rem;
-    h4,
-    h5 {
-      margin-bottom: 0.5rem;
-    }
-    h4 {
-      font-weight: 700;
-    }
-    p {
-      margin-bottom: 1rem;
-      color: var(--clr-grey-5);
-    }
+  footer p {
+    color: var(--clr-primary-5);
+    letter-spacing: var(--spacing);
   }
 `;
 
