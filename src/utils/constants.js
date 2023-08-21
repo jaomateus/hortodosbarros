@@ -49,6 +49,17 @@ export const services = [
   },
 ];
 
+export const plant_categories = [
+  "all",
+  "canopy layer",
+  "low trees",
+  "shrubs",
+  "climbing plants",
+  "herb layer",
+  "ground cover",
+  "roots and tubers",
+];
+
 export const plants_url = "http://localhost:3000/plants";
 
 export const plant_url = "http://localhost:3000/plant/";

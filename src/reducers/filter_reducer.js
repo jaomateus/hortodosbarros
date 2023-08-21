@@ -4,6 +4,8 @@ import {
   SET_LISTVIEW,
   SORT_PLANTS,
   UPDATE_SORT,
+  UPDATE_FILTERS,
+  FILTER_PLANTS,
 } from "../actions";
 
 const filter_reducer = (state, action) => {
@@ -15,7 +17,7 @@ const filter_reducer = (state, action) => {
       ...state,
       all_plants: [...action.payload],
       filtered_plants: [...action.payload],
-      filters: { ...state.filters },
+      filters: { ...state.filters, max_price: maxPrice, price: maxPrice },
     };
   }
 
@@ -44,7 +46,6 @@ const filter_reducer = (state, action) => {
     const { sort, filtered_plants } = state;
     let tempPlants = [...filtered_plants];
     if (sort === "price-lowest") {
-      console.log(sort);
       tempPlants = tempPlants.sort((a, b) => {
         return a.price - b.price;
       });
@@ -69,6 +70,16 @@ const filter_reducer = (state, action) => {
       ...state,
       filtered_plants: tempPlants,
     };
+  }
+
+  if (action.type === UPDATE_FILTERS) {
+    const { name, value } = action.payload;
+    return { ...state, filters: { ...state.filters, [name]: value } };
+  }
+
+  if (action.type === FILTER_PLANTS) {
+    console.log("filtering products");
+    return { ...state };
   }
 
   throw new Error(`No matching "${action.type}" - action type`);
