@@ -16,7 +16,7 @@ const PlantList = () => {
     );
   }
 
-  if (PlantGridView === false) {
+  if (grid_view === false) {
     return <PlantListView plants={plants} />;
   }
 
