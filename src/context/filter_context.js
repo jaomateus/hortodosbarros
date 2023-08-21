@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useReducer } from "react";
 import reducer from "../reducers/filter_reducer";
-import { LOAD_PLANTS } from "../actions";
+import { LOAD_PLANTS, SET_GRIDVIEW, SET_LISTVIEW } from "../actions";
 import { usePlantsContext } from "./plants_context";
 
 const initialState = {
@@ -19,8 +19,16 @@ export const FilterProvider = ({ children }) => {
     dispatch({ type: LOAD_PLANTS, payload: plants });
   }, [plants]);
 
+  const setGridView = () => {
+    dispatch({ type: SET_GRIDVIEW });
+  };
+
+  const setListView = () => {
+    dispatch({ type: SET_LISTVIEW });
+  };
+
   return (
-    <FilterContext.Provider value={{ ...state }}>
+    <FilterContext.Provider value={{ ...state, setGridView, setListView }}>
       {children}
     </FilterContext.Provider>
   );
