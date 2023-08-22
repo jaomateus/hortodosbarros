@@ -23,6 +23,9 @@ const initialState = {
     max_price: 0,
     price: 0,
     flower_color: "all",
+    n_fixer: false,
+    bee_plant: false,
+    nutrient_miner: false,
   },
 };
 
@@ -68,6 +71,10 @@ export const FilterProvider = ({ children }) => {
     if (name === "price") {
       value = Number(value);
     }
+    if (name === "n_fixer" || "bee_plant" || "nutrient_miner") {
+      value = e.target.checked;
+    }
+
     dispatch({ type: UPDATE_FILTERS, payload: { name, value } });
   };
 

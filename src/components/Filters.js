@@ -7,7 +7,17 @@ import { plant_categories, flower_colors } from "../utils/constants";
 
 const Filters = () => {
   const {
-    filters: { text, category, min_price, price, max_price, flower_color },
+    filters: {
+      text,
+      category,
+      min_price,
+      price,
+      max_price,
+      flower_color,
+      n_fixer,
+      bee_plant,
+      nutrient_miner,
+    },
     updateFilters,
     clearFilters,
     all_plants,
@@ -113,9 +123,44 @@ const Filters = () => {
           </div>
           {/* end of price    */}
           {/* roles */}
-
+          <div className="form-control">
+            <h5>functions</h5>
+            <div className="function">
+              <label htmlFor="n_fixer">nitrogen fixer</label>
+              <input
+                type="checkbox"
+                name="n_fixer"
+                id="n_fixer"
+                onChange={updateFilters}
+                checked={n_fixer}
+              />
+            </div>
+            <div class="function">
+              <label htmlFor="nutrient_miner">nutrient miner</label>
+              <input
+                type="checkbox"
+                name="nutrient_miner"
+                id="nutrient_miner"
+                onChange={updateFilters}
+                checked={nutrient_miner}
+              />
+            </div>
+            <div class="function">
+              <label htmlFor="nutrient_miner">bee plant</label>
+              <input
+                type="checkbox"
+                name="bee_plant"
+                id="bee_plant"
+                onChange={updateFilters}
+                checked={bee_plant}
+              />
+            </div>
+          </div>
           {/* end of roles */}
         </form>
+        <button type="button" className="clear-btn" onClick={clearFilters}>
+          clear filters
+        </button>
       </div>
     </Wrapper>
   );
@@ -198,10 +243,10 @@ const Wrapper = styled.section`
   .price {
     margin-bottom: 0.25rem;
   }
-  .shipping {
-    display: grid;
-    grid-template-columns: auto 1fr;
+  .function {
+    display: flex;
     align-items: center;
+    justify-content: space-between;
     text-transform: capitalize;
     column-gap: 0.5rem;
     font-size: 1rem;
