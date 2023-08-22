@@ -96,14 +96,17 @@ const filter_reducer = (state, action) => {
     let tempPlants = [...all_plants];
 
     // filtering
+    // search
     if (text) {
       tempPlants = tempPlants.filter((plant) => {
         return plant.scientific_name.toLowerCase().startsWith(text);
       });
     }
+    // categories
     if (category !== "all") {
       tempPlants = tempPlants.filter((plant) => plant.category === category);
     }
+    // colors
     if (flower_color !== "all") {
       let color = Object.keys(flower_colors).find(
         (key) => flower_colors[key] === flower_color
@@ -111,8 +114,25 @@ const filter_reducer = (state, action) => {
 
       tempPlants = tempPlants.filter((plant) => plant.flower_color === color);
     }
+    // price
+    // functions
+    // n fixer
+    if (n_fixer) {
+      tempPlants = tempPlants.filter((plant) => plant.n_fixer === true);
+    }
+    // bee_plant
+    if (bee_plant) {
+      tempPlants = tempPlants.filter((plant) => plant.bee_plant === true);
+    }
+    // nutrient_miner
+    if (nutrient_miner) {
+      tempPlants = tempPlants.filter((plant) => plant.nutrient_miner === true);
+    }
 
-    return { ...state, filtered_plants: tempPlants };
+    return {
+      ...state,
+      filtered_plants: tempPlants,
+    };
   }
 
   if (action.type === CLEAR_FILTERS) {
