@@ -71,7 +71,6 @@ const Filters = () => {
             <h5>flower colors</h5>
             <div className="colors">
               {Object.keys(flower_colors).map((c, index) => {
-                console.log(flower_colors[c]);
                 if (c === "all") {
                   return (
                     <button
@@ -135,7 +134,7 @@ const Filters = () => {
                 checked={n_fixer}
               />
             </div>
-            <div class="function">
+            <div className="function">
               <label htmlFor="nutrient_miner">nutrient miner</label>
               <input
                 type="checkbox"
@@ -145,7 +144,7 @@ const Filters = () => {
                 checked={nutrient_miner}
               />
             </div>
-            <div class="function">
+            <div className="function">
               <label htmlFor="nutrient_miner">bee plant</label>
               <input
                 type="checkbox"

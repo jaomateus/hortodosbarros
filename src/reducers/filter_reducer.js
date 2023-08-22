@@ -6,6 +6,7 @@ import {
   UPDATE_SORT,
   UPDATE_FILTERS,
   FILTER_PLANTS,
+  CLEAR_FILTERS,
 } from "../actions";
 
 const filter_reducer = (state, action) => {
@@ -78,9 +79,45 @@ const filter_reducer = (state, action) => {
   }
 
   if (action.type === FILTER_PLANTS) {
-    return { ...state };
+    const { all_plants } = state;
+
+    const {
+      text,
+      category,
+      price,
+      flower_color,
+      n_fixer,
+      bee_plant,
+      nutrient_miner,
+    } = state.filters;
+
+    let tempPlants = [...all_plants];
+
+    // filtering
+    if (text) {
+      tempPlants = tempPlants.filter((plant) => {
+        return plant.scientific_name.toLowerCase().startsWith(text);
+      });
+    }
+
+    return { ...state, filtered_plants: tempPlants };
   }
 
+  if (action.type === CLEAR_FILTERS) {
+    return {
+      ...state,
+      filters: {
+        ...state.filters,
+        text: "",
+        category: "all",
+        price: state.filters.max_price,
+        flower_color: "all",
+        n_fixer: false,
+        bee_plant: false,
+        nutrient_miner: false,
+      },
+    };
+  }
   throw new Error(`No matching "${action.type}" - action type`);
 };
 

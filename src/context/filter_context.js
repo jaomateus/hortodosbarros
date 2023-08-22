@@ -8,6 +8,7 @@ import {
   SORT_PLANTS,
   UPDATE_FILTERS,
   FILTER_PLANTS,
+  CLEAR_FILTERS,
 } from "../actions";
 import { usePlantsContext } from "./plants_context";
 
@@ -71,14 +72,23 @@ export const FilterProvider = ({ children }) => {
     if (name === "price") {
       value = Number(value);
     }
-    if (name === "n_fixer" || "bee_plant" || "nutrient_miner") {
+    if (
+      name === "n_fixer" ||
+      name === "bee_plant" ||
+      name === "nutrient_miner"
+    ) {
       value = e.target.checked;
     }
 
-    dispatch({ type: UPDATE_FILTERS, payload: { name, value } });
+    dispatch({
+      type: UPDATE_FILTERS,
+      payload: { name, value },
+    });
   };
 
-  const clearFilters = () => {};
+  const clearFilters = () => {
+    dispatch({ type: CLEAR_FILTERS });
+  };
 
   return (
     <FilterContext.Provider
