@@ -115,6 +115,7 @@ const filter_reducer = (state, action) => {
       tempPlants = tempPlants.filter((plant) => plant.flower_color === color);
     }
     // price
+    tempPlants = tempPlants.filter((plant) => plant.price <= price);
     // functions
     // n fixer
     if (n_fixer) {
