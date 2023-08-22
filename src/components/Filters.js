@@ -3,17 +3,19 @@ import { styled } from "styled-components";
 import { useFilterContext } from "../context/filter_context";
 import { getUniqueValues, formatPrice } from "../utils/helpers";
 import { FaCheck } from "react-icons/fa";
-import { plant_categories } from "../utils/constants";
+import { plant_categories, flower_colors } from "../utils/constants";
 
 const Filters = () => {
   const {
-    filters: { text, category, min_price, price, max_price },
+    filters: { text, category, min_price, price, max_price, flower_color },
     updateFilters,
     clearFilters,
     all_plants,
   } = useFilterContext();
 
+  // get unique values
   const categories = getUniqueValues(all_plants, "category");
+  const colors = getUniqueValues(all_plants, "flower_color");
 
   return (
     <Wrapper>
@@ -31,6 +33,7 @@ const Filters = () => {
             />
           </div>
           {/* end search input */}
+          {/* categories  */}
           <div className="form-control">
             <h5>Layer</h5>
             {/* Conditionally render the buttons */}
@@ -52,6 +55,49 @@ const Filters = () => {
               )}
             </div>
           </div>
+          {/* end of categories  */}
+          {/* flower color*/}
+          <div className="form-control">
+            <h5>flower colors</h5>
+            <div className="colors">
+              {Object.keys(flower_colors).map((c, index) => {
+                console.log(flower_colors[c]);
+                if (c === "all") {
+                  return (
+                    <button
+                      key={index}
+                      name="flower_color"
+                      onClick={updateFilters}
+                      data-color="all"
+                      className={`${
+                        flower_color === "all" ? "all-btn active" : "all-btn"
+                      }`}
+                    >
+                      all
+                    </button>
+                  );
+                }
+                return colors.includes(c) ? (
+                  <button
+                    key={index}
+                    className={`${
+                      flower_color === flower_colors[c]
+                        ? "color-btn active"
+                        : "color-btn"
+                    }`}
+                    type="button"
+                    name="flower_color"
+                    style={{ background: flower_colors[c] }}
+                    data-color={flower_colors[c]}
+                    onClick={updateFilters}
+                  >
+                    {flower_color === flower_colors[c] ? <FaCheck /> : null}
+                  </button>
+                ) : null;
+              })}
+            </div>
+          </div>
+          {/* end flower color*/}
         </form>
       </div>
     </Wrapper>
@@ -108,7 +154,7 @@ const Wrapper = styled.section`
     border-radius: 50%;
     background: #222;
     margin-right: 0.5rem;
-    border: none;
+    border: solid;
     cursor: pointer;
     opacity: 0.5;
     display: flex;

@@ -22,6 +22,7 @@ const initialState = {
     min_price: 0,
     max_price: 0,
     price: 0,
+    flower_color: "all",
   },
 };
 
@@ -60,6 +61,9 @@ export const FilterProvider = ({ children }) => {
     let value = e.target.value;
     if (name === "category") {
       value = e.target.textContent;
+    }
+    if (name === "flower_color") {
+      value = e.target.dataset.color;
     }
     dispatch({ type: UPDATE_FILTERS, payload: { name, value } });
   };

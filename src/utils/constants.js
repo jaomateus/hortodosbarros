@@ -60,6 +60,17 @@ export const plant_categories = [
   "roots and tubers",
 ];
 
+export const flower_colors = {
+  all: "all",
+  white: "#f7f7f7",
+  green: "#81923d",
+  blue: "#2b275a",
+  purpure: "#792654",
+  red: "#a20800",
+  orange: "#db4705",
+  yellow: "#ffb80e",
+};
+
 export const plants_url = "http://localhost:3000/plants";
 
 export const plant_url = "http://localhost:3000/plant/";
