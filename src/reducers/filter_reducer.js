@@ -9,6 +9,8 @@ import {
   CLEAR_FILTERS,
 } from "../actions";
 
+import { flower_colors } from "../utils/constants";
+
 const filter_reducer = (state, action) => {
   if (action.type === LOAD_PLANTS) {
     let maxPrice = action.payload.map((p) => p.price);
@@ -98,6 +100,16 @@ const filter_reducer = (state, action) => {
       tempPlants = tempPlants.filter((plant) => {
         return plant.scientific_name.toLowerCase().startsWith(text);
       });
+    }
+    if (category !== "all") {
+      tempPlants = tempPlants.filter((plant) => plant.category === category);
+    }
+    if (flower_color !== "all") {
+      let color = Object.keys(flower_colors).find(
+        (key) => flower_colors[key] === flower_color
+      );
+
+      tempPlants = tempPlants.filter((plant) => plant.flower_color === color);
     }
 
     return { ...state, filtered_plants: tempPlants };
