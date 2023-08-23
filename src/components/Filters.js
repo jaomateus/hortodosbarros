@@ -21,6 +21,11 @@ const Filters = () => {
     updateFilters,
     clearFilters,
     all_plants,
+    isOpenLayers,
+    isOpenColors,
+    isOpenPrice,
+    isOpenFunctions,
+    toggleFilterGroup,
   } = useFilterContext();
 
   // get unique values
@@ -28,10 +33,10 @@ const Filters = () => {
   const colors = getUniqueValues(all_plants, "flower_color");
 
   // state control
-  const [isOpenLayers, setIsOpenLayers] = useState(false);
-  const [isOpenColors, setIsOpenColors] = useState(false);
-  const [isOpenPrice, setIsOpenPrice] = useState(false);
-  const [isOpenFunctions, setIsOpenFunctions] = useState(false);
+  // const [isOpenLayers, setIsOpenLayers] = useState(false);
+  // const [isOpenColors, setIsOpenColors] = useState(false);
+  // const [isOpenPrice, setIsOpenPrice] = useState(false);
+  // const [isOpenFunctions, setIsOpenFunctions] = useState(false);
 
   return (
     <Wrapper>
@@ -52,7 +57,7 @@ const Filters = () => {
           {/* layers  */}
           <div className={`form-control ${isOpenLayers ? "opened" : ""}`}>
             <div
-              onClick={() => setIsOpenLayers(!isOpenLayers)}
+              onClick={() => toggleFilterGroup("isOpenLayers")}
               className="toggle"
             >
               <h5>Layer</h5>
@@ -79,7 +84,7 @@ const Filters = () => {
           {/* flower color*/}
           <div className={`form-control ${isOpenColors ? "opened" : ""}`}>
             <div
-              onClick={() => setIsOpenColors(!isOpenColors)}
+              onClick={() => toggleFilterGroup("isOpenColors")}
               className="toggle"
             >
               <h5>Colors</h5>
@@ -126,7 +131,7 @@ const Filters = () => {
           {/* price    */}
           <div className={`form-control ${isOpenPrice ? "opened" : ""}`}>
             <div
-              onClick={() => setIsOpenPrice(!isOpenPrice)}
+              onClick={() => toggleFilterGroup("isOpenPrice")}
               className="toggle"
             >
               <h5>price</h5>
@@ -148,7 +153,7 @@ const Filters = () => {
           {/* functions */}
           <div className={`form-control ${isOpenFunctions ? "opened" : ""}`}>
             <div
-              onClick={() => setIsOpenFunctions(!isOpenFunctions)}
+              onClick={() => toggleFilterGroup("isOpenFunctions")}
               className="toggle"
             >
               <h5>functions</h5>

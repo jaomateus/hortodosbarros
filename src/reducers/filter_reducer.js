@@ -7,6 +7,7 @@ import {
   UPDATE_FILTERS,
   FILTER_PLANTS,
   CLEAR_FILTERS,
+  TOGGLE_FILTER_GROUP,
 } from "../actions";
 
 import { flower_colors } from "../utils/constants";
@@ -151,6 +152,15 @@ const filter_reducer = (state, action) => {
       },
     };
   }
+
+  if (action.type === TOGGLE_FILTER_GROUP) {
+    const { group } = action.payload;
+    return {
+      ...state,
+      [group]: !state[group],
+    };
+  }
+
   throw new Error(`No matching "${action.type}" - action type`);
 };
 

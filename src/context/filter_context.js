@@ -9,6 +9,7 @@ import {
   UPDATE_FILTERS,
   FILTER_PLANTS,
   CLEAR_FILTERS,
+  TOGGLE_FILTER_GROUP,
 } from "../actions";
 import { usePlantsContext } from "./plants_context";
 
@@ -17,6 +18,10 @@ const initialState = {
   all_plants: [],
   grid_view: true,
   sort: "name-a",
+  isOpenLayers: false,
+  isOpenColors: false,
+  isOpenPrice: false,
+  isOpenFunctions: false,
   filters: {
     text: "",
     layer: "all",
@@ -90,6 +95,10 @@ export const FilterProvider = ({ children }) => {
     dispatch({ type: CLEAR_FILTERS });
   };
 
+  const toggleFilterGroup = (group) => {
+    dispatch({ type: TOGGLE_FILTER_GROUP, payload: { group } });
+  };
+
   return (
     <FilterContext.Provider
       value={{
@@ -99,6 +108,7 @@ export const FilterProvider = ({ children }) => {
         updateSort,
         updateFilters,
         clearFilters,
+        toggleFilterGroup,
       }}
     >
       {children}
