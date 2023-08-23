@@ -49,7 +49,7 @@ export const services = [
   },
 ];
 
-export const plant_categories = [
+export const layers = [
   "all",
   "canopy layer",
   "low trees",

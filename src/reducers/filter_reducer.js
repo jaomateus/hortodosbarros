@@ -85,7 +85,7 @@ const filter_reducer = (state, action) => {
 
     const {
       text,
-      category,
+      layer,
       price,
       flower_color,
       n_fixer,
@@ -103,8 +103,8 @@ const filter_reducer = (state, action) => {
       });
     }
     // categories
-    if (category !== "all") {
-      tempPlants = tempPlants.filter((plant) => plant.category === category);
+    if (layer !== "all") {
+      tempPlants = tempPlants.filter((plant) => plant.layer === layer);
     }
     // colors
     if (flower_color !== "all") {
@@ -142,7 +142,7 @@ const filter_reducer = (state, action) => {
       filters: {
         ...state.filters,
         text: "",
-        category: "all",
+        layer: "all",
         price: state.filters.max_price,
         flower_color: "all",
         n_fixer: false,

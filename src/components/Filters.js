@@ -1,15 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { styled } from "styled-components";
 import { useFilterContext } from "../context/filter_context";
 import { getUniqueValues, formatPrice } from "../utils/helpers";
-import { FaCheck } from "react-icons/fa";
-import { plant_categories, flower_colors } from "../utils/constants";
+import { FaCheck, FaAngleDown, FaAngleUp } from "react-icons/fa";
+import { layers, flower_colors } from "../utils/constants";
 
 const Filters = () => {
   const {
     filters: {
       text,
-      category,
+      layer,
       min_price,
       price,
       max_price,
@@ -24,8 +24,14 @@ const Filters = () => {
   } = useFilterContext();
 
   // get unique values
-  const categories = getUniqueValues(all_plants, "category");
+  const categories = getUniqueValues(all_plants, "layer");
   const colors = getUniqueValues(all_plants, "flower_color");
+
+  // state control
+  const [isOpenLayers, setIsOpenLayers] = useState(false);
+  const [isOpenColors, setIsOpenColors] = useState(false);
+  const [isOpenPrice, setIsOpenPrice] = useState(false);
+  const [isOpenFunctions, setIsOpenFunctions] = useState(false);
 
   return (
     <Wrapper>
@@ -43,21 +49,25 @@ const Filters = () => {
             />
           </div>
           {/* end search input */}
-          {/* categories  */}
-          <div className="form-control">
-            <h5>Layer</h5>
+          {/* layers  */}
+          <div className={`form-control ${isOpenLayers ? "opened" : ""}`}>
+            <div
+              onClick={() => setIsOpenLayers(!isOpenLayers)}
+              className="toggle"
+            >
+              <h5>Layer</h5>
+              <div>{isOpenLayers ? <FaAngleUp /> : <FaAngleDown />}</div>
+            </div>
             {/* Conditionally render the buttons */}
-            <div>
-              {plant_categories.map((c, index) =>
+            <div className="filter-group">
+              {layers.map((c, index) =>
                 categories.includes(c) ? (
                   <button
                     key={index}
-                    className={`${
-                      category === c.toLowerCase() ? "active" : null
-                    }`}
+                    className={`${layer === c.toLowerCase() ? "active" : null}`}
                     onClick={updateFilters}
                     type="button"
-                    name="category"
+                    name="layer"
                   >
                     {c}
                   </button>
@@ -65,11 +75,17 @@ const Filters = () => {
               )}
             </div>
           </div>
-          {/* end of categories  */}
+          {/* end of layers  */}
           {/* flower color*/}
-          <div className="form-control">
-            <h5>flower colors</h5>
-            <div className="colors">
+          <div className={`form-control ${isOpenColors ? "opened" : ""}`}>
+            <div
+              onClick={() => setIsOpenColors(!isOpenColors)}
+              className="toggle"
+            >
+              <h5>Colors</h5>
+              <div>{isOpenColors ? <FaAngleUp /> : <FaAngleDown />}</div>
+            </div>
+            <div className="filter-group">
               {Object.keys(flower_colors).map((c, index) => {
                 if (c === "all") {
                   return (
@@ -108,51 +124,67 @@ const Filters = () => {
           </div>
           {/* end flower color*/}
           {/* price    */}
-          <div className="form-control">
-            <h5>price</h5>
-            <p className="price">{formatPrice(price)}</p>
-            <input
-              type="range"
-              name="price"
-              onChange={updateFilters}
-              min={min_price}
-              max={max_price}
-              value={price}
-            />
+          <div className={`form-control ${isOpenPrice ? "opened" : ""}`}>
+            <div
+              onClick={() => setIsOpenPrice(!isOpenPrice)}
+              className="toggle"
+            >
+              <h5>price</h5>
+              <div>{isOpenPrice ? <FaAngleUp /> : <FaAngleDown />}</div>
+            </div>
+            <div className="filter-group">
+              <p className="price">{formatPrice(price)}</p>
+              <input
+                type="range"
+                name="price"
+                onChange={updateFilters}
+                min={min_price}
+                max={max_price}
+                value={price}
+              />
+            </div>
           </div>
           {/* end of price    */}
-          {/* roles */}
-          <div className="form-control">
-            <h5>functions</h5>
-            <div className="function">
-              <label htmlFor="n_fixer">nitrogen fixer</label>
-              <input
-                type="checkbox"
-                name="n_fixer"
-                id="n_fixer"
-                onChange={updateFilters}
-                checked={n_fixer}
-              />
+          {/* functions */}
+          <div className={`form-control ${isOpenFunctions ? "opened" : ""}`}>
+            <div
+              onClick={() => setIsOpenFunctions(!isOpenFunctions)}
+              className="toggle"
+            >
+              <h5>functions</h5>
+              <div>{isOpenFunctions ? <FaAngleUp /> : <FaAngleDown />}</div>
             </div>
-            <div className="function">
-              <label htmlFor="nutrient_miner">nutrient miner</label>
-              <input
-                type="checkbox"
-                name="nutrient_miner"
-                id="nutrient_miner"
-                onChange={updateFilters}
-                checked={nutrient_miner}
-              />
-            </div>
-            <div className="function">
-              <label htmlFor="nutrient_miner">bee plant</label>
-              <input
-                type="checkbox"
-                name="bee_plant"
-                id="bee_plant"
-                onChange={updateFilters}
-                checked={bee_plant}
-              />
+            <div className="filter-group">
+              <div className="function">
+                <label htmlFor="n_fixer">nitrogen fixer</label>
+                <input
+                  type="checkbox"
+                  name="n_fixer"
+                  id="n_fixer"
+                  onChange={updateFilters}
+                  checked={n_fixer}
+                />
+              </div>
+              <div className="function">
+                <label htmlFor="nutrient_miner">nutrient miner</label>
+                <input
+                  type="checkbox"
+                  name="nutrient_miner"
+                  id="nutrient_miner"
+                  onChange={updateFilters}
+                  checked={nutrient_miner}
+                />
+              </div>
+              <div className="function">
+                <label htmlFor="nutrient_miner">bee plant</label>
+                <input
+                  type="checkbox"
+                  name="bee_plant"
+                  id="bee_plant"
+                  onChange={updateFilters}
+                  checked={bee_plant}
+                />
+              </div>
             </div>
           </div>
           {/* end of roles */}
@@ -166,10 +198,31 @@ const Filters = () => {
 };
 
 const Wrapper = styled.section`
+  .toggle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    border-bottom: solid 1px;
+    margin-bottom: 1rem;
+  }
+  .arrow {
+    font-size: 1rem;
+  }
+
+  .filter-group {
+    display: none;
+  }
+
   .form-control {
     margin-bottom: 1.25rem;
     h5 {
       margin-bottom: 0.5rem;
+    }
+    &.opened {
+      .filter-group {
+        display: block;
+      }
     }
   }
   .search-input {

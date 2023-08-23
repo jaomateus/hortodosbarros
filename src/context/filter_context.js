@@ -19,7 +19,7 @@ const initialState = {
   sort: "name-a",
   filters: {
     text: "",
-    category: "all",
+    layer: "all",
     min_price: 0,
     max_price: 0,
     price: 0,
@@ -63,7 +63,7 @@ export const FilterProvider = ({ children }) => {
   const updateFilters = (e) => {
     let name = e.target.name;
     let value = e.target.value;
-    if (name === "category") {
+    if (name === "layer") {
       value = e.target.textContent;
     }
     if (name === "flower_color") {
