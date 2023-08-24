@@ -35,7 +35,7 @@ const Plant = () => {
   return (
     <Wrapper>
       <div className="section section-center page">
-        <Link to="/plants" className="btn">
+        <Link to="/plantshop" className="btn">
           back to plants
         </Link>
         <div className="product-center">

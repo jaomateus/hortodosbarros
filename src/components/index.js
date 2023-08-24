@@ -18,3 +18,4 @@ export { default as Sort } from "./Sort";
 export { default as Filters } from "./Filters";
 export { default as PlantGridView } from "./PlantGridView";
 export { default as PlantListView } from "./PlantListView";
+export { default as CartContent } from "./CartContent";
