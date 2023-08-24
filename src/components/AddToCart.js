@@ -1,20 +1,17 @@
 import React, { useState } from "react";
+import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { styled } from "styled-components";
-import { useCartContext } from "../context/cart_context";
-
-// components
 import { FaCheck } from "react-icons/fa";
-import { FaPlus, FaMinus } from "react-icons/fa";
-
+import { useCartContext } from "../context/cart_context";
+import AmountButtons from "./AmountButtons";
 const AddToCart = ({ plant }) => {
+  // add to cart
   const { addToCart } = useCartContext();
   const { id, stock } = plant;
-
-  const [amount, setAmmount] = useState(1);
+  const [amount, setAmount] = useState(1);
 
   const increase = () => {
-    setAmmount((oldAmount) => {
+    setAmount((oldAmount) => {
       let tempAmount = oldAmount + 1;
       if (tempAmount > stock) {
         tempAmount = stock;
@@ -22,9 +19,8 @@ const AddToCart = ({ plant }) => {
       return tempAmount;
     });
   };
-
   const decrease = () => {
-    setAmmount((oldAmount) => {
+    setAmount((oldAmount) => {
       let tempAmount = oldAmount - 1;
       if (tempAmount < 1) {
         tempAmount = 1;
@@ -32,41 +28,62 @@ const AddToCart = ({ plant }) => {
       return tempAmount;
     });
   };
-
   return (
     <Wrapper>
       <div className="btn-container">
-        <div className="amount-btns">
-          <button type="button" className="amount-btn" onClick={decrease}>
-            <FaMinus />
-          </button>
-          <h2 className="ammount">{amount}</h2>
-          <button type="button" className="amount-btn" onClick={increase}>
-            <FaPlus />
-          </button>
-        </div>
+        <AmountButtons
+          increase={increase}
+          decrease={decrease}
+          amount={amount}
+        />
+
+        <Link
+          to="/cart"
+          className="btn"
+          onClick={() => addToCart(id, amount, plant)}
+        >
+          add to cart
+        </Link>
       </div>
-      <Link
-        to="/cart"
-        className="btn"
-        onClick={() => addToCart(id, amount, plant)}
-      >
-        add to cart
-      </Link>
     </Wrapper>
   );
 };
-
 const Wrapper = styled.section`
   margin-top: 2rem;
-  .amount-btns {
+  .colors {
     display: grid;
-    width: 140px;
-    justify-items: center;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 125px 1fr;
     align-items: center;
+    margin-bottom: 1rem;
+    span {
+      text-transform: capitalize;
+      font-weight: 700;
+    }
+    div {
+      display: flex;
+    }
   }
-
+  .color-btn {
+    display: inline-block;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    background: #222;
+    margin-right: 0.5rem;
+    border: none;
+    cursor: pointer;
+    opacity: 0.5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    svg {
+      font-size: 0.75rem;
+      color: var(--clr-white);
+    }
+  }
+  .active {
+    opacity: 1;
+  }
   .btn-container {
     margin-top: 2rem;
   }
@@ -74,20 +91,6 @@ const Wrapper = styled.section`
   .btn {
     margin-top: 1rem;
     width: 140px;
-  }
-  h2 {
-    margin-bottom: 0;
-  }
-  button {
-    background: transparent;
-    border-color: transparent;
-    cursor: pointer;
-    padding: 1rem 0;
-    width: 2rem;
-    height: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
   }
 `;
 export default AddToCart;
