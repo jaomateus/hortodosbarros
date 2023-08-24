@@ -2,17 +2,18 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { styled } from "styled-components";
 import { BsFillPersonFill, BsFillBagFill } from "react-icons/bs";
-// import { useProductsContext } from "../context/products_context";
+import { useCartContext } from "../context/cart_context";
 
 const NavbarButtons = () => {
   const closeSidebar = () => {};
+  const { total_items } = useCartContext();
 
   return (
     <Wrapper className="navbar-btn-wrapper">
       <Link to="cart" className="cart-btn" onClick={closeSidebar}>
         <span className="cart-container">
           <BsFillBagFill />
-          <span className="cart-value">12</span>
+          <span className="cart-value">{total_items}</span>
         </span>
       </Link>
       <button type="button" className="auth-btn" onClick={closeSidebar}>
