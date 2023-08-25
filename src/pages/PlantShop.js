@@ -34,12 +34,12 @@ const PlantShop = () => {
 const Wrapper = styled.div`
   .plants {
     display: grid;
-    gap: 3rem 1.5rem;
+    gap: 3rem 5rem;
     margin: 4rem auto;
   }
   @media (min-width: 768px) {
     .plants {
-      grid-template-columns: 200px 1fr;
+      grid-template-columns: 250px 1fr;
     }
   }
 `;

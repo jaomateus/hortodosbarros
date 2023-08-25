@@ -140,12 +140,12 @@ p {
 .section-center {
   width: 90vw;
   margin: 0 auto;
-  max-width: var(--max-width);
+  max-width: 85vw;
 }
 
 @media screen and (min-width: 992px) {
   .section-center {
-    width: 95vw;
+    width: 90vw;
   }
 }
 .text-center {

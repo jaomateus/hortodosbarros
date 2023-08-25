@@ -208,7 +208,7 @@ const Wrapper = styled.section`
     justify-content: space-between;
     align-items: center;
     cursor: pointer;
-    border-bottom: solid 1px;
+    border-bottom: 1px solid var(--clr-grey-8);
     margin-bottom: 1rem;
   }
   .arrow {
@@ -255,6 +255,7 @@ const Wrapper = styled.section`
   }
   .active {
     border-color: var(--clr-grey-5);
+    font-weight: 700;
   }
   .company {
     background: var(--clr-grey-10);
