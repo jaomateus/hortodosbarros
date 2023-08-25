@@ -1,14 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { styled } from "styled-components";
 import { BsFillPersonFill, BsFillBagFill } from "react-icons/bs";
 import { FaShopingCart, FaUserPlus, FaUserMinus } from "react-icons/fa";
 import { useCartContext } from "../context/cart_context";
-import { useUserContext } from "../context/user_context";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const NavbarButtons = () => {
   const { total_items } = useCartContext();
-  const { loginWithRedirect, myUser, logout } = useUserContext();
+  const {
+    isAuthenticated,
+    loginWithRedirect,
+    logout,
+    user,
+    isLoading,
+  } = useAuth0();
+  const [myUser, setMyUser] = useState(null);
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      setMyUser(user);
+    } else {
+      setMyUser(false);
+    }
+  }, [isAuthenticated]);
 
   return (
     <Wrapper className="navbar-btn-wrapper">
@@ -24,11 +39,11 @@ const NavbarButtons = () => {
           className="auth-btn"
           onClick={() => logout({ returnTo: window.location.origin })}
         >
-          Logout <FaUserMinus />
+          <FaUserMinus />
         </button>
       ) : (
         <button type="button" className="auth-btn" onClick={loginWithRedirect}>
-          Login <FaUserPlus />
+          <FaUserPlus />
         </button>
       )}
     </Wrapper>

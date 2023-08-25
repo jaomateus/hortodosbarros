@@ -5,6 +5,7 @@ import { FaBars } from "react-icons/fa";
 import { links } from "../utils/constants";
 import { NavbarButtons } from ".";
 import Sidebar from "./Sidebar";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Navbar = () => {
   const [sidebar, setSidebar] = useState(false);
@@ -12,6 +13,7 @@ const Navbar = () => {
   const showSidebar = () => {
     setSidebar(!sidebar);
   };
+  const { isAuthenticated } = useAuth0();
 
   return (
     <NavContainer>
@@ -35,11 +37,13 @@ const Navbar = () => {
               </li>
             );
           })}
-          <li>
-            <NavLink to="/checkout" className="nav-link">
-              checkout
-            </NavLink>
-          </li>
+          {isAuthenticated && (
+            <li>
+              <NavLink to="/checkout" className="nav-link">
+                checkout
+              </NavLink>
+            </li>
+          )}
         </ul>
         <NavbarButtons />
       </div>
