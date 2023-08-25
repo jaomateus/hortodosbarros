@@ -7,3 +7,4 @@ Fully responsive
 Error handling
 Formspree
 Infinite scrolling
+Auth0
