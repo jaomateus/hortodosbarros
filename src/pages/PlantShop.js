@@ -1,21 +1,10 @@
 import React from "react";
-import { useLoaderData } from "react-router-dom";
-import axios from "axios";
-import { plants_url as url } from "../utils/constants";
 import { styled } from "styled-components";
 
 // components
 import { PlantList, Sort, Filters } from "../components";
 
-// export const loader = async () => {
-//   const searchTerm = "";
-//   const response = await axios.get(url);
-//   return { plants: response.data, searchTerm };
-// };
-
 const PlantShop = () => {
-  // const { plants, searchTerm } = useLoaderData();
-
   return (
     <main>
       <Wrapper>

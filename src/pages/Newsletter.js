@@ -1,6 +1,5 @@
 import React from "react";
-import { Form, redirect, useNavigation } from "react-router-dom";
-import axios from "axios";
+import { Form, useNavigation } from "react-router-dom";
 
 // The aim of these exercise was to try FormComponent and react router action
 

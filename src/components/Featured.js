@@ -1,6 +1,7 @@
 import React from "react";
 import { styled } from "styled-components";
 import PlantFeaturedCard from "./PlantFeaturedCard";
+import { Link } from "react-router-dom";
 
 const Featured = ({ featured }) => {
   return (
@@ -14,6 +15,9 @@ const Featured = ({ featured }) => {
           return <PlantFeaturedCard key={plant.id} {...plant} />;
         })}
       </div>
+      <Link to="/plantshop" className="btn">
+        all plants
+      </Link>
     </Wrapper>
   );
 };

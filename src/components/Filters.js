@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { styled } from "styled-components";
 import { useFilterContext } from "../context/filter_context";
 import { getUniqueValues, formatPrice } from "../utils/helpers";
@@ -31,12 +31,6 @@ const Filters = () => {
   // get unique values
   const categories = getUniqueValues(all_plants, "layer");
   const colors = getUniqueValues(all_plants, "flower_color");
-
-  // state control
-  // const [isOpenLayers, setIsOpenLayers] = useState(false);
-  // const [isOpenColors, setIsOpenColors] = useState(false);
-  // const [isOpenPrice, setIsOpenPrice] = useState(false);
-  // const [isOpenFunctions, setIsOpenFunctions] = useState(false);
 
   return (
     <Wrapper>

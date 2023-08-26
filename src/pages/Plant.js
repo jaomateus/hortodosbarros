@@ -26,7 +26,6 @@ const Plant = () => {
     stock,
     stars,
     reviews,
-    id,
   } = plant;
 
   const description =

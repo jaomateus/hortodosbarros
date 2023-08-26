@@ -2,7 +2,7 @@ import React from "react";
 import { styled } from "styled-components";
 
 const PageHero = () => {
-  return <div>Hero</div>;
+  return <Wrapper>Hero</Wrapper>;
 };
 
 const Wrapper = styled.section`

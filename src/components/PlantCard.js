@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useOutletContext } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { styled } from "styled-components";
 import img from "../assets/Image_not_available.png";
 import { FaSearch } from "react-icons/fa";

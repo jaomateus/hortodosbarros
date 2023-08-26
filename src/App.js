@@ -14,9 +14,9 @@ import {
   Newsletter,
 } from "./pages";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import { loader as plantShopLoader } from "./pages/PlantShop";
 import { loader as plantLoader } from "./pages/Plant";
 import { loader as plantsFeaturedLoader } from "./pages/Landing";
+
 import { action as newsletterAction } from "./pages/Newsletter";
 
 import Checkout from "./pages/Checkout";
@@ -39,8 +39,6 @@ const router = createBrowserRouter([
       {
         path: "plantshop",
         element: <PlantShop />,
-        // loader: plantShopLoader,
-        // errorElement: <SinglePageError />,
       },
       {
         path: "cart",
@@ -63,7 +61,11 @@ const router = createBrowserRouter([
       },
       {
         path: "checkout",
-        element: <Checkout />,
+        element: (
+          <PrivateRoute>
+            <Checkout />
+          </PrivateRoute>
+        ),
       },
     ],
   },

@@ -11,7 +11,7 @@ const PlantListView = ({ plants }) => {
   return (
     <Wrapper>
       {plants.map((plant) => {
-        const { id, image_url, scientific_name, family, price } = plant;
+        const { id, image_url, scientific_name, price } = plant;
         return (
           <article key={id}>
             <img src={image_url} alt={scientific_name} />

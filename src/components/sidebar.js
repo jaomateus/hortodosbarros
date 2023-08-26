@@ -4,8 +4,11 @@ import { Link, NavLink } from "react-router-dom";
 import { styled } from "styled-components";
 import { links } from "../utils/constants";
 import NavbarButtons from "./NavbarButtons";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Sidebar = ({ sidebar, showSidebar }) => {
+  const { isAuthenticated } = useAuth0();
+
   return (
     <SidebarContainer>
       <aside className={sidebar ? "sidebar show-sidebar" : "sidebar"}>
@@ -27,11 +30,13 @@ const Sidebar = ({ sidebar, showSidebar }) => {
               </li>
             );
           })}
-          <li>
-            <NavLink to="/checkout" onClick={showSidebar}>
-              checkout
-            </NavLink>
-          </li>
+          {isAuthenticated && (
+            <li>
+              <NavLink to="/checkout" className="nav-link">
+                checkout
+              </NavLink>
+            </li>
+          )}
         </ul>
         <NavbarButtons />
       </aside>
