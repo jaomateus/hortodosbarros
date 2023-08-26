@@ -71,8 +71,8 @@ export const flower_colors = {
   yellow: "#ffb80e",
 };
 
-export const plants_url = "http://localhost:3000/plants";
+export const plants_url = "http://localhost:3001/plants";
 
-export const plant_url = "http://localhost:3000/plant/";
+export const plant_url = "http://localhost:3001/plant/";
 
-export const featured_url = "http://localhost:3000/featured/";
+export const featured_url = "http://localhost:3001/featured/";
