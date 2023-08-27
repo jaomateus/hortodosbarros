@@ -7,7 +7,7 @@ import { useCartContext } from "../context/cart_context";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const NavbarButtons = () => {
-  const { total_items } = useCartContext();
+  const { total_items, clearCart } = useCartContext();
   const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
 
   return (
@@ -22,7 +22,10 @@ const NavbarButtons = () => {
         <button
           type="button"
           className="auth-btn"
-          onClick={() => logout({ returnTo: window.location.origin })}
+          onClick={() => {
+            clearCart();
+            logout({ returnTo: window.location.origin });
+          }}
         >
           <FaUserMinus />
         </button>

@@ -5,10 +5,11 @@ import { styled } from "styled-components";
 import { formatPrice } from "../utils/helpers";
 // components
 import { PlantImages, Stars, AddToCart } from "../components";
+import { plant_url } from "../utils/constants";
 
 export const loader = async ({ params }) => {
   const { id } = params;
-  const response = await axios.get(`http://localhost:3000/plants/${id}`);
+  const response = await axios.get(plant_url + id);
   return response.data;
 };
 
