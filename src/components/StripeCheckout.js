@@ -1,59 +1,64 @@
 import React, { useState, useEffect } from "react";
-
-// extra imports
-import { styled } from "styled-components";
 import { loadStripe } from "@stripe/stripe-js";
-import {
-  PaymentElement,
-  LinkAuthenticationElement,
-  useStripe,
-  Elements,
-  useElements,
-} from "@stripe/react-stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
 import axios from "axios";
 import { useCartContext } from "../context/cart_context";
-import { useAuth0 } from "@auth0/auth0-react";
-import { formatPrice } from "../utils/helpers";
-import { useHistory } from "react-router-dom";
 
-const promise = loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY);
+import CheckoutForm from "./StripeCheckoutForm";
+import { styled } from "styled-components";
 
-const CheckoutForm = () => {
-  const { cart, total_amount, shipping_fee, clearCart } = useCartContext();
-  const { user } = useAuth0();
-
-  const cardStyle = {
-    style: {
-      base: {
-        color: "#32325d",
-        fontFamily: "Arial, sans-serif",
-        fontSmoothing: "antialiased",
-        fontSize: "16px",
-        "::placeholder": {
-          color: "#32325d",
-        },
-      },
-      invalid: {
-        color: "#fa755a",
-        iconColor: "#fa755a",
-      },
-    },
-  };
-
-  return <h2>Hello from Stripe Checkout</h2>;
-};
+// Make sure to call loadStripe outside of a component’s render to avoid
+// recreating the Stripe object on every render.
+// This is your test publishable API key.
+const stripePromise = loadStripe(
+  "pk_test_51Nj1wfEtfNJPJq2VOz0XlrHJw0JJv2Al8JScKU9PStoofolsxlwe3AbOofroff2fyjUws1T3Rs6OyapMAepubHNU00pAivBeXy"
+);
 
 const StripeCheckout = () => {
+  const { cart, total_amount, shipping_fee, clearCart } = useCartContext();
+
+  const [clientSecret, setClientSecret] = useState("");
+
+  const createPaymentIntent = async () => {
+    try {
+      const { data } = await axios.post(
+        "http://localhost:3001/create_payment_intent",
+        JSON.stringify({ cart })
+      );
+      setClientSecret(data.client_secret);
+    } catch (error) {
+      console.log(error.response);
+    }
+  };
+
+  useEffect(() => {
+    createPaymentIntent();
+  }, []);
+
+  // useEffect(() => {
+  //   console.log(clientSecret);
+  // }, [clientSecret]);
+
+  const appearance = {
+    theme: "stripe",
+  };
+  const options = {
+    clientSecret,
+    appearance,
+  };
+
   return (
-    <Wrapper>
-      <Elements stripe={promise}>
-        <CheckoutForm />
-      </Elements>
+    <Wrapper className="App">
+      {clientSecret && (
+        <Elements options={options} stripe={stripePromise}>
+          <CheckoutForm />
+        </Elements>
+      )}
     </Wrapper>
   );
 };
 
-const Wrapper = styled.section`
+const Wrapper = styled.div`
   form {
     width: 30vw;
     min-width: 500px;
