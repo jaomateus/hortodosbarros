@@ -1,23 +1,14 @@
 import React from "react";
 import { Link, useLoaderData } from "react-router-dom";
+import axios from "axios";
 import { styled } from "styled-components";
-import { formatPrice, customFetch } from "../utils/helpers";
-
+import { formatPrice } from "../utils/helpers";
 // components
 import { PlantImages, Stars, AddToCart } from "../components";
+import { plants_url } from "../utils/constants";
 
-const singlePlantQuery = (id) => {
-  return {
-    queryKey: ["singlePlant", id],
-    queryFn: () => customFetch(`/plants/${id}`),
-  };
-};
-
-export const loader = (queryClient) => async ({ params }) => {
-  const response = await queryClient.ensureQueryData(
-    singlePlantQuery(params.id)
-  );
-
+export const loader = async ({ params }) => {
+  const response = await axios.get(`${plants_url}/${params.id}`);
   return { plant: response.data };
 };
 

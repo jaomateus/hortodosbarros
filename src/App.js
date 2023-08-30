@@ -18,7 +18,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 // loaders
-import { loader as plantLoader } from "./pages/Plant";
+import { loader as singlePlantLoader } from "./pages/Plant";
 import { loader as landingLoader } from "./pages/Landing";
 import { loader as plantShopLoader } from "./pages/PlantShop";
 
@@ -65,7 +65,7 @@ const router = createBrowserRouter([
       {
         path: "plants/:id",
         element: <Plant />,
-        loader: plantLoader,
+        loader: singlePlantLoader(queryClient),
         errorElement: <SinglePageError />,
       },
       {
