@@ -73,4 +73,4 @@ export const flower_colors = {
 
 export const productionUrl = "http://localhost:3001";
 export const plants_url = "http://localhost:3001/plants";
-export const featured_url = "http://localhost:3001/featured/";
+export const featured_url = "http:/localhost:3001/featured/";

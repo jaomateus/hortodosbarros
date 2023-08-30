@@ -20,6 +20,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 // loaders
 import { loader as plantLoader } from "./pages/Plant";
 import { loader as landingLoader } from "./pages/Landing";
+import { loader as plantShopLoader } from "./pages/PlantShop";
 
 // actions
 import { action as newsletterAction } from "./pages/Newsletter";
@@ -45,8 +46,8 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Landing />,
-        loader: landingLoader,
         errorElement: <SinglePageError />,
+        loader: landingLoader(queryClient),
       },
       {
         path: "about",
@@ -55,6 +56,7 @@ const router = createBrowserRouter([
       {
         path: "plantshop",
         element: <PlantShop />,
+        loader: plantShopLoader,
       },
       {
         path: "cart",
@@ -88,7 +90,11 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />;
+    </QueryClientProvider>
+  );
 }
 
 export default App;

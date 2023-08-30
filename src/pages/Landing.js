@@ -1,12 +1,18 @@
 import React from "react";
 import { Featured, LandingHero, Contact, Services } from "../components";
-import { useLoaderData } from "react-router-dom";
-import { featured_url as url } from "../utils/constants";
-import axios from "axios";
+import { customFetch } from "../utils/helpers";
 
-export const loader = async () => {
-  const response = await axios.get(url);
-  return response.data;
+const url = "/featured";
+
+const featuredPlantsQuery = {
+  queryKey: ["featuredPlants"],
+  queryFn: () => customFetch(url),
+};
+
+export const loader = (queryClient) => async () => {
+  const response = await queryClient.ensureQueryData(featuredPlantsQuery);
+  const plants = response.data;
+  return { plants };
 };
 
 const Landing = () => {

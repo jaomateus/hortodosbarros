@@ -4,7 +4,7 @@ import PlantFeaturedCard from "./PlantFeaturedCard";
 import { Link, useLoaderData } from "react-router-dom";
 
 const Featured = () => {
-  const featured = useLoaderData();
+  const { plants } = useLoaderData();
   return (
     <Wrapper className="section">
       <div className="title">
@@ -12,7 +12,7 @@ const Featured = () => {
         <div className="underline"></div>
       </div>
       <div className="section-center featured">
-        {featured.slice(0, 3).map((plant) => {
+        {plants.slice(0, 3).map((plant) => {
           return <PlantFeaturedCard key={plant.id} {...plant} />;
         })}
       </div>
