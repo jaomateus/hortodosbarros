@@ -19,5 +19,5 @@ export { default as Filters } from "./Filters";
 export { default as PlantGridView } from "./PlantGridView";
 export { default as PlantListView } from "./PlantListView";
 export { default as CartContent } from "./CartContent";
-export { default as StripeCheckout } from "./StripeCheckout";
+export { default as Stripe } from "./Stripe";
 export { default as StripeCheckoutForm } from "./StripeCheckoutForm";

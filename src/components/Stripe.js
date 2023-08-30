@@ -7,14 +7,10 @@ import { useCartContext } from "../context/cart_context";
 import CheckoutForm from "./StripeCheckoutForm";
 import { styled } from "styled-components";
 
-// Make sure to call loadStripe outside of a component’s render to avoid
-// recreating the Stripe object on every render.
 // This is your test publishable API key.
-const stripePromise = loadStripe(
-  "pk_test_51Nj1wfEtfNJPJq2VOz0XlrHJw0JJv2Al8JScKU9PStoofolsxlwe3AbOofroff2fyjUws1T3Rs6OyapMAepubHNU00pAivBeXy"
-);
+const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY);
 
-const StripeCheckout = () => {
+const Stripe = () => {
   const { cart, total_amount, shipping_fee, clearCart } = useCartContext();
 
   const [clientSecret, setClientSecret] = useState("");
@@ -34,10 +30,6 @@ const StripeCheckout = () => {
   useEffect(() => {
     createPaymentIntent();
   }, []);
-
-  // useEffect(() => {
-  //   console.log(clientSecret);
-  // }, [clientSecret]);
 
   const appearance = {
     theme: "stripe",
@@ -180,4 +172,4 @@ const Wrapper = styled.div`
   }
 `;
 
-export default StripeCheckout;
+export default Stripe;

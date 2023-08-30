@@ -1,5 +1,5 @@
 import React from "react";
-import { StripeCheckout } from "../components";
+import { Stripe } from "../components";
 import { styled } from "styled-components";
 
 // extra imports
@@ -13,12 +13,12 @@ const Checkout = () => {
       {cart.length < 1 ? (
         <div className="empty">
           <h2>your car is empty</h2>
-          <Link to="/plants" class="btn">
+          <Link to="/plantshop" class="btn">
             fill it
           </Link>
         </div>
       ) : (
-        <StripeCheckout />
+        <Stripe />
       )}
     </Wrapper>
   );

@@ -15,7 +15,7 @@ import {
 } from "./pages";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { loader as plantLoader } from "./pages/Plant";
-import { loader as plantsFeaturedLoader } from "./pages/Landing";
+import { loader as landingLoader } from "./pages/Landing";
 
 import { action as newsletterAction } from "./pages/Newsletter";
 
@@ -30,7 +30,8 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Landing />,
-        loader: plantsFeaturedLoader,
+        loader: landingLoader,
+        errorElement: <SinglePageError />,
       },
       {
         path: "about",
@@ -46,9 +47,9 @@ const router = createBrowserRouter([
       },
       {
         path: "plants/:id",
-        errorElement: <SinglePageError />,
-        loader: plantLoader,
         element: <Plant />,
+        loader: plantLoader,
+        errorElement: <SinglePageError />,
       },
       {
         path: "bookshop",

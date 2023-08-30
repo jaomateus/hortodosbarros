@@ -5,16 +5,15 @@ import { styled } from "styled-components";
 import { formatPrice } from "../utils/helpers";
 // components
 import { PlantImages, Stars, AddToCart } from "../components";
-import { plant_url } from "../utils/constants";
+import { plants_url } from "../utils/constants";
 
 export const loader = async ({ params }) => {
-  const { id } = params;
-  const response = await axios.get(plant_url + id);
-  return response.data;
+  const response = await axios.get(`${plants_url}/${params.id}`);
+  return { plant: response.data };
 };
 
 const Plant = () => {
-  const plant = useLoaderData();
+  const { plant } = useLoaderData();
 
   if (!plant) return <h2>something went wrong...</h2>;
   const {

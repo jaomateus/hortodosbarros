@@ -10,11 +10,10 @@ export const loader = async () => {
 };
 
 const Landing = () => {
-  const featured = useLoaderData();
   return (
     <main>
       <LandingHero />
-      <Featured featured={featured} />
+      <Featured />
       <Services />
       <Contact />
     </main>

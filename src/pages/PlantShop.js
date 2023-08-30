@@ -1,8 +1,14 @@
 import React from "react";
 import { styled } from "styled-components";
+import { plants_url } from "../utils/constants";
 
 // components
 import { PlantList, Sort, Filters } from "../components";
+
+export const loader = async ({ request }) => {
+  // const response = await axios.get(`${plants_url}/${params.id}`);
+  // return { plant: response.data };
+};
 
 const PlantShop = () => {
   return (

@@ -1,9 +1,10 @@
 import React from "react";
 import { styled } from "styled-components";
 import PlantFeaturedCard from "./PlantFeaturedCard";
-import { Link } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 
-const Featured = ({ featured }) => {
+const Featured = () => {
+  const featured = useLoaderData();
   return (
     <Wrapper className="section">
       <div className="title">
