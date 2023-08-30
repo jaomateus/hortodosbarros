@@ -1,6 +1,6 @@
 export { default as Navbar } from "./Navbar";
 export { default as PlantCard } from "./PlantCard";
-export { default as PlantList } from "./PlantList";
+export { default as PlantsContainer } from "./PlantsContainer";
 export { default as PlantSearchForm } from "./PlantSearchForm";
 export { default as Sidebar } from "./Sidebar";
 export { default as Footer } from "./Footer";

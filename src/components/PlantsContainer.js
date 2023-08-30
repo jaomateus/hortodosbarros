@@ -2,9 +2,9 @@ import React from "react";
 import { useFilterContext } from "../context/filter_context";
 
 // COMPONENTS
-import { PlantGridView, PlantListView } from "../components";
+import { PlantGridView, PlantListView } from ".";
 
-const PlantList = () => {
+const PlantsContainer = () => {
   const { filtered_plants: plants, grid_view } = useFilterContext();
 
   if (!plants) {
@@ -22,4 +22,4 @@ const PlantList = () => {
   return <PlantGridView plants={plants}>Plant list</PlantGridView>;
 };
 
-export default PlantList;
+export default PlantsContainer;
