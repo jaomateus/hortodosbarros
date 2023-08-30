@@ -7,13 +7,19 @@ import { customFetch } from "../utils/helpers";
 import { PlantsContainer, Sort, Filters } from "../components";
 
 const url = "/plants";
+
 export const loader = async ({ request }) => {
-  const response = await customFetch(url);
-  return { plants: response.data };
+  const params = Object.fromEntries([
+    ...new URL(request.url).searchParams.entries(),
+  ]);
+  const response = await customFetch(url, { params });
+  const plants = response.data;
+
+  return { plants, params };
 };
 
 const PlantShop = () => {
-  const { plants, searchTerm } = useLoaderData();
+  const { plants } = useLoaderData();
 
   return (
     <main>
